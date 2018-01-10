@@ -1,4 +1,7 @@
 # Moomoo-AI-Bot-Sender
+
+Join Nebula here: https://discord.gg/Uj3GWPy
+
 A Moomoo Bot Sender with AI.
 
 Press R (minimap ping) for the bots to come to you.
