@@ -21,7 +21,7 @@ After node.js is installed, run the following command in your console inside thi
 npm install
 
 
-Start: node index.js [--probeTribe tribeName] [--probeName playerName] [--num numberOfBots] [--link moomooPartyLink] [--tribe tribeName] [--name botName] [--randnames true] [--chat chatMessage] [--ai true]
+Start: `node index.js [--probeTribe tribeName] [--probeName playerName] [--num numberOfBots] [--link moomooPartyLink] [--tribe tribeName] [--name botName] [--randnames true] [--chat chatMessage] [--ai true]`
 
 --probeTribe searches all Moomoo.io servers for any tribes with the given name and returns the IPs so you can use them with --link.
 --probeName does almost the same thing as --probeTribe, but searches the leaderboards for a player with the given name.
