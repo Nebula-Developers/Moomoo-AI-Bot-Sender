@@ -23,6 +23,9 @@ npm install
 
 Start: node index.js [--probeTribe tribeName] [--probeName playerName] [--num numberOfBots] [--link moomooPartyLink] [--tribe tribeName] [--name botName] [--randnames true] [--chat chatMessage] [--ai true]
 
+--probeTribe searches all Moomoo.io servers for any tribes with the given name and returns the IPs so you can use them with --link.
+--probeName does almost the same thing as --probeTribe, but searches the leaderboards for a player with the given name.
+
 
 Commands:
 
@@ -32,7 +35,7 @@ Commands:
 
 !fid \<player ID>: Makes the bots follow the player with that ID.
   
-!atkid \<player ID>: Makes the bots attack the player with that ID.
+!atkid \<player ID>: Makes the bots attack the player with that ID. [BUGGY]
   
 !s: Makes the bots stay.
 
