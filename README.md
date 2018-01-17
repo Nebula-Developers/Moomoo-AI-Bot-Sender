@@ -1,5 +1,7 @@
 # Moomoo-AI-Bot-Sender
 
+Join Nebula here: https://discord.gg/Uj3GWPy
+
 Subscribe to our subreddit here: https://reddit.com/r/Nebula_Devs
 
 A Moomoo Bot Sender with AI.
