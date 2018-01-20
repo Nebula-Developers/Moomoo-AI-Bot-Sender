@@ -1179,13 +1179,13 @@ class Bot {
         }else if (command === "fid"){
           goto.x = goto.y = null;
           stay = false;
-          followID = args[0];
+          followID = parseInt(args[0]);
           attackFollowedPlayer = false;
           followMouse = false;
         }else if (command === "atkid"){
           goto.x = goto.y = null;
           stay = false;
-          followID = args[0];
+          followID = parseInt(args[0]);
           attackFollowedPlayer = true;
           followMouse = false;
         }else if (command === "s"){
