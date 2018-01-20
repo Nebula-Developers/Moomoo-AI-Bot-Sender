@@ -1,3 +1,16 @@
+// ==UserScript==
+// @name         Moomoo Bot Utilities
+// @namespace    https://discord.gg/Uj3GWPy
+// @version      1.0
+// @description  Shows your internal ID and position.
+// @author       Mega_Mewthree
+// @match        *://moomoo.io/*
+// @match        *://45.77.0.81/*
+// @match        *://dev.moomoo.io/*
+// @grant        none
+// @run-at       document-start
+// ==/UserScript==
+
 var ws = null;
 var id = null;
 var pos = [];
