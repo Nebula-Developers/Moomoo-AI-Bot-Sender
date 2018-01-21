@@ -12,5 +12,10 @@
     "request": "^2.83.0",
     "robotjs": "^0.4.7",
     "socket.io": "^2.0.4"
-  }
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Sender.git"
+  },
+  "bugs": "https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Sender/issues"
 }
