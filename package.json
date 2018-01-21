@@ -1,16 +1,21 @@
 {
   "name": "moomoo-bots-with-ai",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Moomoo AI Bot Script",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Anonymous",
-  "license": "GNU General Public License v3.0",
+  "author": "Mega-Mewthree",
+  "license": "GPL-3.0",
   "dependencies": {
     "request": "^2.83.0",
     "robotjs": "^0.4.7",
     "socket.io": "^2.0.4"
-  }
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Sender.git"
+  },
+  "bugs": "https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Sender/issues"
 }
