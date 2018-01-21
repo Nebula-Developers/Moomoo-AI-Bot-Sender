@@ -15,7 +15,7 @@ Put the code in showid.js into Tampermonkey so that your ID is visible.
 
 INSTALL:
 
-NEW VIDEO INSTALLATION GUIDE: https://www.youtube.com/watch?v=6QfVIt5V4oI
+**NEW VIDEO INSTALLATION GUIDE:** https://www.youtube.com/watch?v=6QfVIt5V4oI
 
 Download node.js here: https://nodejs.org/en/
 
