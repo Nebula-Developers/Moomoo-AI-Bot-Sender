@@ -17,5 +17,8 @@
     "type" : "git",
     "url" : "https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Sender.git"
   },
-  "bugs": "https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Sender/issues"
+  "bugs": "https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Sender/issues",
+  "engines": {
+    "node": ">=7.6.0"
+  }
 }
