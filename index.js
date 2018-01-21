@@ -1,8 +1,15 @@
 const io = require("socket.io-client");
 const request = require("request");
-const computer = require("robotjs");
+var computer = null;
 
-const screen = computer.getScreenSize();
+try {
+	require.resolve("robotjs");
+	computer = require("robotjs");
+}catch(e){
+	console.error("Robot.js was not installed correctly. Follow mouse function is disabled.");
+}
+
+const screen = computer && computer.getScreenSize();
 
 var args = parseFlags(process.argv.slice(2).join(" "), ["--num", "--link", "--tribe", "--name", "--randnames", "--chat", "--ai", "--probeTribe", "--probeName"]);
 
@@ -16,9 +23,12 @@ var goto = {x: null, y: null};
 
 var mousePos = {x: 0, y: 0};
 var followMouse = false;
-var getMouseInputInterval = setInterval(() => {
-  mousePos = computer.getMousePos();
-}, 200);
+var getMouseInputInterval = null;
+if (computer){
+	getMouseInputInterval = setInterval(() => {
+  	mousePos = computer.getMousePos();
+	}, 200);
+}
 
 function get(url){
   return new Promise((resolve, reject) => {
@@ -1200,7 +1210,7 @@ class Bot {
           followID = null;
           attackFollowedPlayer = false;
           followMouse = false;
-        }else if (command === "fm"){
+        }else if (command === "fm" && computer){
           goto.x = goto.y = null;
           stay = false;
           followID = null;
