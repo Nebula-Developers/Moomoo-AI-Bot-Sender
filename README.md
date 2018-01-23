@@ -20,16 +20,17 @@ INSTALL:
 Download node.js here: https://nodejs.org/en/
 
 
-After node.js is installed, run the following command in your console inside this folder:
+After node.js is installed, run the below command in your console inside this folder. It is required to install important code the script depends on to run:
 
-npm install
+  npm install
 
+Here is the start script:
 
-Start: `node index.js [--probeTribe tribeName] [--probeName playerName] [--num numberOfBots] [--link moomooPartyLink] [--tribe tribeName] [--name botName] [--randnames true] [--chat chatMessage] [--ai true]`
+    node index.js [--probeTribe tribeName] [--probeName playerName] [--num numberOfBots] [--link moomooPartyLink] [--tribe tribeName] [--name botName] [--randnames true] [--chat chatMessage] [--ai true]`
 
---probeTribe searches all Moomoo.io servers for any tribes with the given name and returns the IPs so you can use them with --link.
+`--probeTribe` searches all Moomoo.io servers for any tribes with the given name and returns the IPs so you can use them with --link.
 
---probeName does almost the same thing as --probeTribe, but searches the leaderboards for a player with the given name.
+`--probeName` does almost the same thing as --probeTribe, but searches the leaderboards for a player with the given name.
 
 
 Commands:
