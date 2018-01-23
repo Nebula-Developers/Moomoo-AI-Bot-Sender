@@ -9,15 +9,29 @@ A Moomoo Bot Sender with AI.
 Press R (minimap ping) for the bots to come to you.
 
 Type "setowner \<your ID>" into the node.js console to make the bot obey your commands.
-  
-Put the code in showid.js into Tampermonkey so that your ID is visible.
 
 
-INSTALL:
+# INSTALL:
 
 **NEW VIDEO INSTALLATION GUIDE:** https://www.youtube.com/watch?v=6QfVIt5V4oI
 
 Download node.js here: https://nodejs.org/en/
+
+
+Install a userscript manager:
+
+Chrome: [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en)
+
+Firefox: [Tampermonkey](https://addons.mozilla.org/firefox/addon/tampermonkey/)
+
+Safari: [Tampermonkey](http://tampermonkey.net/?browser=safari)
+
+Microsoft Edge: [Tampermonkey](https://www.microsoft.com/store/p/tampermonkey/9nblggh5162s)
+
+Opera: [Tampermonkey](https://addons.opera.com/extensions/details/tampermonkey-beta/)
+
+
+Put the code in showid.js into Tampermonkey so that your ID is visible.
 
 
 After node.js is installed, run the following command in your console inside this folder:
@@ -32,7 +46,7 @@ Start: `node index.js [--probeTribe tribeName] [--probeName playerName] [--num n
 --probeName does almost the same thing as --probeTribe, but searches the leaderboards for a player with the given name.
 
 
-Commands:
+# Commands:
 
 !id \<player name>: Makes the bots send the ID of a player in chat.
   
