@@ -1,6 +1,6 @@
-# Moomoo AI Bot Sender
+# Moomoo.io AI Bot Sender
 
-A Moomoo Bot Sender with AI.
+This script is a very configurable botting tool for the MMO game [Moomoo.io](http://moomoo.io).
 
 ## Resources
 
