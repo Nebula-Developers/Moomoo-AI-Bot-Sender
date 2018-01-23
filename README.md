@@ -36,7 +36,7 @@ Put the code in showid.js into Tampermonkey so that your ID is visible.
 
 After node.js is installed, run the following command in your console inside this folder:
 
-npm install
+`npm install`
 
 
 Start: `node index.js [--probeTribe tribeName] [--probeName playerName] [--num numberOfBots] [--link moomooPartyLink] [--tribe tribeName] [--name botName] [--randnames true] [--chat chatMessage] [--ai true]`
@@ -47,6 +47,8 @@ Start: `node index.js [--probeTribe tribeName] [--probeName playerName] [--num n
 
 
 # Commands:
+
+Type commands into the Moomoo chat.
 
 !id \<player name>: Makes the bots send the ID of a player in chat.
   
