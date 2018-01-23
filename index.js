@@ -11,7 +11,7 @@ try {
 
 const screen = computer && computer.getScreenSize();
 
-var args = parseFlags(process.argv.slice(2).join(" "), ["--num", "--link", "--tribe", "--name", "--randnames", "--chat", "--ai", "--probeTribe", "--probeName"]);
+var args = parseFlags(process.argv.slice(2).join(" "), ["--num", "--link", "--tribe", "--name", "--randnames", "--chat", "--ai", "--probeTribe", "--probeName", "--autoHeal"]);
 
 var ownerID = null;
 var followID = null;
