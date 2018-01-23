@@ -1,28 +1,23 @@
 # Moomoo-AI-Bot-Sender
 
-Join Nebula here: https://discord.gg/Uj3GWPy
-
-Subscribe to our subreddit here: https://reddit.com/r/Nebula_Devs
-
 A Moomoo Bot Sender with AI.
 
-Press R (minimap ping) for the bots to come to you.
+## Resources
 
-Type "setowner \<your ID>" into the node.js console to make the bot obey your commands.
-  
+* [Discord server](https://discord.gg/Uj3GWPy)
+* [Subreddit](https://reddit.com/r/Nebula_Devs)
+
 Put the code in showid.js into Tampermonkey so that your ID is visible.
 
-
-INSTALL:
+## Installation
 
 **NEW VIDEO INSTALLATION GUIDE:** https://www.youtube.com/watch?v=6QfVIt5V4oI
 
-Download node.js here: https://nodejs.org/en/
+First, you must download and install Node.js: https://nodejs.org/en/
 
+After Node.js is installed, run the below command in your console inside this folder. It is required to install important code the script depends on to run:
 
-After node.js is installed, run the below command in your console inside this folder. It is required to install important code the script depends on to run:
-
-  npm install
+    npm install
 
 Here is the start script:
 
@@ -32,8 +27,13 @@ Here is the start script:
 
 `--probeName` does almost the same thing as --probeTribe, but searches the leaderboards for a player with the given name.
 
+## Console Commands
 
-Commands:
+Type `setowner <your ID>` into the Node.js console to make the bot obey your commands.
+
+## Ingame Commands
+
+Press R or click on the minimap to make a ping on the minimap, which makes the bots come to that pinged location.
 
 !id \<player name>: Makes the bots send the ID of a player in chat.
   
