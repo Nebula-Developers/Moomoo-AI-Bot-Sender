@@ -21,7 +21,7 @@ After Node.js is installed, run the below command in your console inside this fo
     
 Here is the start script:
 
-    node index.js [--probeTribe tribeName] [--probeName playerName] [--num numberOfBots] [--link moomooPartyLink] [--tribe tribeName] [--name botName] [--randnames true] [--chat chatMessage] [--ai true]`
+    node index.js [--probeTribe tribeName] [--probeName playerName] [--num numberOfBots] [--link moomooPartyLink] [--tribe tribeName] [--name botName] [--randnames true] [--chat chatMessage] [--ai true] [--autoHeal true]`
     
 See the next section for information on everything after `node index.js`.
 
