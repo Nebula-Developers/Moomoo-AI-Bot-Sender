@@ -991,6 +991,7 @@ class Bot {
     this.origChatMsg = chatMsg;
     this.ai = ai;
     this.probe = probe;
+    this.autoHeal = autoHeal;
     this.pos = {
       x: 0,
       y: 0
