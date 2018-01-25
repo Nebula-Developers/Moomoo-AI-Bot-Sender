@@ -27,7 +27,7 @@ Run the following commands in your console (Command Prompt/Powershell):
   
   `npm config set msvs_version 2015`
   
-#### Mac OS X
+#### macOS
 
 Download and install Python 2.7.x [here](https://www.python.org/downloads/release/python-2714/) if it isn't already installed.
 
