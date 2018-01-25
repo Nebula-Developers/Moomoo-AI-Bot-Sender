@@ -17,21 +17,9 @@ After Node.js is installed, run the below command in your console inside this fo
 
     npm install
     
-Install a userscript manager:
+Install Tampermonkey for your browser (click the name and you'll be taken to the extension directory's listing on your browser): [Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo), [Firefox](https://addons.mozilla.org/firefox/addon/tampermonkey/), [Safari](http://tampermonkey.net/?browser=safari), [Microsoft Edge](https://www.microsoft.com/store/p/tampermonkey/9nblggh5162s), [Opera](https://addons.opera.com/extensions/details/tampermonkey-beta/)
 
-Chrome: [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en)
-
-Firefox: [Tampermonkey](https://addons.mozilla.org/firefox/addon/tampermonkey/)
-
-Safari: [Tampermonkey](http://tampermonkey.net/?browser=safari)
-
-Microsoft Edge: [Tampermonkey](https://www.microsoft.com/store/p/tampermonkey/9nblggh5162s)
-
-Opera: [Tampermonkey](https://addons.opera.com/extensions/details/tampermonkey-beta/)
-
-
-Put the code in showid.js into Tampermonkey so that your ID is visible.
-
+Put the code in `showid.js` into Tampermonkey so that your ID is visible.
 
 Here is the start script:
 
