@@ -11,7 +11,7 @@ try {
 
 const screen = computer && computer.getScreenSize();
 
-var args = parseFlags(process.argv.slice(2).join(" "), ["--num", "--link", "--tribe", "--name", "--randnames", "--chat", "--ai", "--probeTribe", "--probeName"]);
+var args = parseFlags(process.argv.slice(2).join(" "), ["--num", "--link", "--tribe", "--name", "--randnames", "--chat", "--ai", "--probeTribe", "--probeName", "--autoHeal"]);
 
 var ownerID = null;
 var followID = null;
@@ -982,7 +982,7 @@ let tribes = {};
 let players = {};
 
 class Bot {
-  constructor(n, ip, name, tribe, chatMsg, ai, probe){
+  constructor(n, ip, name, tribe, chatMsg, ai, probe, autoHeal){
     this.number = n;
     this.ip = ip;
     this.name = name || "unknown";
@@ -991,6 +991,7 @@ class Bot {
     this.origChatMsg = chatMsg;
     this.ai = ai;
     this.probe = probe;
+    this.autoHeal = autoHeal;
     this.pos = {
       x: 0,
       y: 0
@@ -1117,7 +1118,7 @@ class Bot {
             p.y = data[2 + i * 13],
             p.angle = data[3 + i * 13],
             p.lastUpdated = Date.now()
-          }
+          } 
         }
         this.update();
       });
@@ -1132,9 +1133,13 @@ class Bot {
         }
       });
       // Damaged
-      sk.on("10", (id, health) => {
-        if (id == this.id && health < 100) setTimeout(this.heal.bind(this), 75 + (Math.random() / 10) | 0);
-  		});
+      if (this.autoHeal){
+	sk.on("10", (id, health) => {
+		if (id == this.id && health < 100) {
+			setTimeout(this.heal.bind(this), 75 + (Math.random() / 10) | 0);
+		}
+	});
+      }
       // Death
       sk.on("11", () => {
         console.log(`${this.number} died`);
@@ -1324,6 +1329,7 @@ var ai = args.ai && args.ai.value.toLowerCase() != "false" && args.ai.value.toLo
 var probeTribe = args.probeTribe && args.probeTribe.value;
 var probeName = args.probeName && args.probeName.value;
 var probe = probeTribe || probeName;
+var autoHeal = typeof args.autoHeal !== "boolean" ? true : args.autoHeal;
 typeof name === "string" && (name = name.slice(0, 16));
 tribe && (tribe = tribe.slice(0, 6));
 chat && (chat = chat.slice(0, 30));
@@ -1334,7 +1340,7 @@ if (probe){
     if (i <= 0) return;
     var promises = [];
     for (var j = i; (j > i - 8) && (j > 0); j--){
-      promises.push(new Bot(j, allServers[j - 1].ip, "PROBE", tribe, chat, ai, probe).connect())
+      promises.push(new Bot(j, allServers[j - 1].ip, "PROBE", tribe, chat, ai, probe, autoHeal).connect())
     }
     Promise.all(promises).then(() => {
       connectBots(i - 8);
@@ -1345,7 +1351,7 @@ if (probe){
     if (i <= 0) return;
     var promises = [];
     for (var j = i; (j > i - 8) && (j > 0); j--){
-      promises.push(new Bot(j, link, name === true ? names[(Math.random() * names.length) | 0] : name, tribe, chat, ai, probe).connect())
+      promises.push(new Bot(j, link, name === true ? names[(Math.random() * names.length) | 0] : name, tribe, chat, ai, probe, autoHeal).connect())
     }
     Promise.all(promises).then(() => {
       connectBots(i - 8);
