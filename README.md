@@ -71,9 +71,7 @@ If you have already installed the bot code, run `npm uninstall robotjs` in your 
 
 #### Windows
 
-Download and install Visual C++ Build Tools 2015 [here](http://landinghub.visualstudio.com/visual-cpp-build-tools).
-
-Download and install Python 2.7.x [here](https://www.python.org/downloads/release/python-2714/).
+Download and install [Visual C++ Build Tools 2015](http://landinghub.visualstudio.com/visual-cpp-build-tools) and [Python 2.7.x](https://www.python.org/downloads/release/python-2714/).
 
 Run the following commands in your console (Command Prompt/Powershell):
 
@@ -82,9 +80,7 @@ Run the following commands in your console (Command Prompt/Powershell):
   
 #### macOS
 
-Download and install Python 2.7.x [here](https://www.python.org/downloads/release/python-2714/) if it isn't already installed.
-
-Download and install Xcode [here](https://developer.apple.com/xcode/download/).
+Download and install [Python 2.7.x](https://www.python.org/downloads/release/python-2714/) and [Xcode](https://developer.apple.com/xcode/download/) if they aren't already installed.
 
 #### Unix
 
