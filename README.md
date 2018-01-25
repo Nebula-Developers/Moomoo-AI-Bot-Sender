@@ -13,7 +13,7 @@ This script is a very configurable botting tool for the MMO game [Moomoo.io](htt
 
 ### Install Compilers to Make Follow Mouse Command Work (Optional)
 
-If you have already installed the bot code, run `npm uninstall robotjs`.
+If you have already installed the bot code, run `npm uninstall robotjs` in your console/terminal inside of the bot code's directory.
 
 #### Windows
 
@@ -21,7 +21,7 @@ Download and install Visual C++ Build Tools 2015 [here](http://landinghub.visual
 
 Download and install Python 2.7.x [here](https://www.python.org/downloads/release/python-2714/).
 
-Run the following commands in Command Prompt/Powershell:
+Run the following commands in your console (Command Prompt/Powershell):
 
   `npm config set python python2.7`
   
@@ -37,7 +37,13 @@ Download and install Xcode [here](https://developer.apple.com/xcode/download/).
 
 You need Python 2.7.x and `make`.
 
-Download and install [GCC](https://gcc.gnu.org/).
+Download and install GCC [here](https://gcc.gnu.org/).
+
+#### All Systems
+
+Run the following command in your console/terminal inside of the bot code's directory:
+
+  `npm install robotjs`
 
 ### Install the Bot Code (Required)
 
