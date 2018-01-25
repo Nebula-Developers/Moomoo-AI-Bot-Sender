@@ -17,7 +17,13 @@ After Node.js is installed, run the below command in your console inside this fo
 
     npm install
     
-Install Tampermonkey for your browser (click the name and you'll be taken to the extension directory's listing on your browser): [Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo), [Firefox](https://addons.mozilla.org/firefox/addon/tampermonkey/), [Safari](http://tampermonkey.net/?browser=safari), [Microsoft Edge](https://www.microsoft.com/store/p/tampermonkey/9nblggh5162s), [Opera](https://addons.opera.com/extensions/details/tampermonkey-beta/)
+Install Tampermonkey for your browser (click the name and you'll be taken to the extension directory's listing on your browser):
+
+* [Tampermonkey for Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
+* [Tampermonkey for Firefox](https://addons.mozilla.org/firefox/addon/tampermonkey/)
+* [Tampermonkey for Safari](http://tampermonkey.net/?browser=safari)
+* [Tampermonkey for Microsoft Edge](https://www.microsoft.com/store/p/tampermonkey/9nblggh5162s)
+* [Tampermonkey for Opera](https://addons.opera.com/extensions/details/tampermonkey-beta/)
 
 Put the code in `showid.js` into Tampermonkey so that your ID is visible.
 
@@ -37,9 +43,9 @@ Type "setowner \<your ID>" into the node.js console to make the bot obey your co
 
 ### Probing
 
-`--probeTribe` searches all Moomoo.io servers for any tribes with the given name and returns the IPs so you can use them with --link.
+`--probeTribe` searches all Moomoo.io servers for any tribes with the given name and returns the IPs so you can use them with `--link`.
 
-`--probeName` does almost the same thing as --probeTribe, but searches the leaderboards for a player with the given name.
+`--probeName` does almost the same thing as `--probeTribe`, but searches the leaderboards for a player with the given name.
 
 You can probe (search) for a name on the leaderboard or a tribe on all the public Moomoo.io servers. This is useful if you want to use the other part of this script to put bots on someone's livestream.
 
