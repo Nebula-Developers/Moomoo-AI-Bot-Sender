@@ -19,7 +19,7 @@ After Node.js is installed, run the below command in your console inside this fo
     
 Install Tampermonkey for your browser (click the name and you'll be taken to the extension directory's listing on your browser):
 
-* [Tampermonkey for Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
+* [Tampermonkey for Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) ([Beta](https://chrome.google.com/webstore/detail/tampermonkey-beta/gcalenpjmijncebpfijmoaglllgpjagf))
 * [Tampermonkey for Firefox](https://addons.mozilla.org/firefox/addon/tampermonkey/)
 * [Tampermonkey for Safari](http://tampermonkey.net/?browser=safari)
 * [Tampermonkey for Microsoft Edge](https://www.microsoft.com/store/p/tampermonkey/9nblggh5162s)
