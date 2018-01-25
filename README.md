@@ -11,41 +11,6 @@ This script is a very configurable botting tool for the MMO game [Moomoo.io](htt
 
 **NEW VIDEO INSTALLATION GUIDE:** https://www.youtube.com/watch?v=6QfVIt5V4oI
 
-### Enabling Mouse-Following
-
-You must install compilers in order to make the mouse-following functionality work.
-
-If you have already installed the bot code, run `npm uninstall robotjs` in your console/terminal inside of the bot code's directory.
-
-#### Windows
-
-Download and install Visual C++ Build Tools 2015 [here](http://landinghub.visualstudio.com/visual-cpp-build-tools).
-
-Download and install Python 2.7.x [here](https://www.python.org/downloads/release/python-2714/).
-
-Run the following commands in your console (Command Prompt/Powershell):
-
-    npm config set python python2.7
-    npm config set msvs_version 2015
-  
-#### macOS
-
-Download and install Python 2.7.x [here](https://www.python.org/downloads/release/python-2714/) if it isn't already installed.
-
-Download and install Xcode [here](https://developer.apple.com/xcode/download/).
-
-#### Unix
-
-You need Python 2.7.x and `make`.
-
-Download and install GCC [here](https://gcc.gnu.org/).
-
-#### All Systems
-
-Run the following command in your console/terminal inside of the bot code's directory:
-
-    npm install robotjs
-
 ### Install the Bot Code (Required)
 
 First, you must download and install Node.js: https://nodejs.org/en/
@@ -105,6 +70,41 @@ Here is the start script for probing using a name on the leaderboard:
 Similar to the other command, this will return a list of server IPs which have the player `Lucario` on the leaderboard.
 
 You can put both the outputs into `--link` for the botting start script.
+
+### Enabling Mouse-Following
+
+You must install compilers in order to make the mouse-following functionality work.
+
+If you have already installed the bot code, run `npm uninstall robotjs` in your console/terminal inside of the bot code's directory.
+
+#### Windows
+
+Download and install Visual C++ Build Tools 2015 [here](http://landinghub.visualstudio.com/visual-cpp-build-tools).
+
+Download and install Python 2.7.x [here](https://www.python.org/downloads/release/python-2714/).
+
+Run the following commands in your console (Command Prompt/Powershell):
+
+    npm config set python python2.7
+    npm config set msvs_version 2015
+  
+#### macOS
+
+Download and install Python 2.7.x [here](https://www.python.org/downloads/release/python-2714/) if it isn't already installed.
+
+Download and install Xcode [here](https://developer.apple.com/xcode/download/).
+
+#### Unix
+
+You need Python 2.7.x and `make`.
+
+Download and install GCC [here](https://gcc.gnu.org/).
+
+#### All Systems
+
+Run the following command in your console/terminal inside of the bot code's directory:
+
+    npm install robotjs
 
 ## Console Commands
 
