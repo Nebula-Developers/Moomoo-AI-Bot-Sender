@@ -11,7 +11,9 @@ This script is a very configurable botting tool for the MMO game [Moomoo.io](htt
 
 **NEW VIDEO INSTALLATION GUIDE:** https://www.youtube.com/watch?v=6QfVIt5V4oI
 
-### Install Compilers to Make Follow Mouse Command Work (Optional)
+### Enabling Mouse-Following
+
+You must install compilers in order to make the mouse-following functionality work.
 
 If you have already installed the bot code, run `npm uninstall robotjs` in your console/terminal inside of the bot code's directory.
 
