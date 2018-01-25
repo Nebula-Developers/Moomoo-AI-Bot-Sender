@@ -35,11 +35,11 @@ See the next section for information on everything after `node index.js`.
 
 ## Configuration
 
-There are two main modes to this bot, probing and botting.
+There are two main modes to this bot, probing and botting. Each one comes with a different set of configuration settings.
 
 ### Botting
 
-Type "setowner \<your ID>" into the node.js console to make the bot obey your commands.
+Type `setowner <your ID>` into the node.js console to make the bot obey your commands.
 
 ### Probing
 
