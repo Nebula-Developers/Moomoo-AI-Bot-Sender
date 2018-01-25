@@ -11,8 +11,6 @@ This script is a very configurable botting tool for the MMO game [Moomoo.io](htt
 
 **NEW VIDEO INSTALLATION GUIDE:** https://www.youtube.com/watch?v=6QfVIt5V4oI
 
-### Install the Bot Code (Required)
-
 First, you must download and install Node.js: https://nodejs.org/en/
 
 After Node.js is installed, run the below command in your console inside this folder. It is required to install important code the script depends on to run, and you can do that easily with the following command:
