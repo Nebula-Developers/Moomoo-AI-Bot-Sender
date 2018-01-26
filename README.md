@@ -9,6 +9,8 @@ This script is a very configurable botting tool for the MMO game [Moomoo.io](htt
 
 ## Installation
 
+**If you've already installed and it says Robotjs wasn't installed, [click here] to find out how to fix that!!**
+
 **NEW VIDEO INSTALLATION GUIDE:** https://www.youtube.com/watch?v=6QfVIt5V4oI
 
 First, you must download and install Node.js: https://nodejs.org/en/
