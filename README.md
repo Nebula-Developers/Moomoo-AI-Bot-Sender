@@ -93,7 +93,7 @@ You can probe (search) for a name on the leaderboard or a tribe on all the publi
 
 Here is the start script for probing using a tribe name:
 
-    `node index.js --probeTribe Nebula`
+    node index.js --probeTribe Nebula
     
 This will return a list of server IPs which have the tribe `Nebula` in them.
 
