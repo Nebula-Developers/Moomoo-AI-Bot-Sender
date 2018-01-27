@@ -15,20 +15,15 @@ var ws = null;
 var id = null;
 var pos = [];
 
-WebSocket.prototype.oldSend = WebSocket.prototype.send;
-WebSocket.prototype.send = function(m){
-    this.oldSend(m);
-    if (!ws){
+WebSocket = class extends WebSocket {
+    constructor(...arg) {
+        super(...arg);
         ws = this;
-        socketFound(this);
+        this.addEventListener('message', function(e){
+            handleMessage(e);
+        });
     }
 };
-
-function socketFound(socket){
-    socket.addEventListener('message', function(e){
-        handleMessage(e);
-    });
-}
 
 function handleMessage(e){
     var m = e.data;
