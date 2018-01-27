@@ -85,6 +85,22 @@ There are two main modes to this bot, probing and botting.
 
 Type "setowner \<your ID>" into the node.js console to make the bot obey your commands.
 
+`--num` sets the number of bots. Required for bots to function. Default: `0`
+
+`--link` sets the Moomoo party link. Required for bots to function. Default: none
+
+`--tribe` sets the Moomoo tribe. Default: none
+
+`--name` sets the bots' names. Default: `unknown`
+
+`--randnames` selects random names for the bots. Default: `false`
+
+`--chat` sets the bots' chat message. Default: none
+
+`--ai` enables using commands. If AI is not enabled, the bots spawn and do nothing. Default: `false`
+
+`--autoHeal` enables auto healing. Default: `true`
+
 ### Probing
 
 `--probeTribe` searches all Moomoo.io servers for any tribes with the given name and returns the IPs so you can use them with --link.
