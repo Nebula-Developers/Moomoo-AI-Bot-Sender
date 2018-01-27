@@ -13,6 +13,8 @@ This script is a very configurable botting tool for the MMO game [Moomoo.io](htt
 
 First, you must download and install Node.js: https://nodejs.org/en/
 
+For all the Windows users who have no clue how to open a Command Prompt terminal/console, open `openCommandPrompt.bat`.
+
 ### Install Compilers to Make Follow Mouse Command Work (Optional)
 
 If you have already installed the bot code, run `npm uninstall robotjs` in your console/terminal inside of the bot code's directory.
