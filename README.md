@@ -55,6 +55,8 @@ After Node.js is installed, run the below command in your console inside this fo
 
     npm install
     
+Or you can run `npminstall.bat` if you are on Windows and you have no clue how to get to a console.
+
 Install a userscript manager:
 
 Chrome: [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en)
@@ -81,7 +83,7 @@ See the next section for information on everything after `node index.js`.
 
 There are two main modes to this bot, probing and botting.
 
-#### NEW: Open start.bat to get an easier to use UI! For people who can't use the command line very well!
+#### NEW: Open start.bat to get an easier to use UI! For people who can't use the command line very well! (Windows only)
 
 ### Botting
 
