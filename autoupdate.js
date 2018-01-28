@@ -62,7 +62,6 @@ autoupdater.on("update.not-installed", function (){
   autoupdater.fire("extract");
 });
 autoupdater.on("update.extracted", function (){
-  fs.writeFileSync(`${__dirname}/lastUpdated.txt`, Date.now().toString(), "utf8");
   console.log("Update installed successfully!");
   console.log("Check showid.js for any changes and update your Tampermonkey script as necessary");
   console.log("Changes will be stored in changelog.txt.")
@@ -81,6 +80,7 @@ autoupdater.on("download.error", function (err){
   console.error(`Error when downloading: ${err}`);
 });
 autoupdater.on("end", function (){
+  fs.writeFileSync(`${__dirname}/lastUpdated.txt`, Date.now().toString(), "utf8");
   console.log("===== AUTO UPDATE FINISHED =====");
   console.log("You may close this window now.");
 });
