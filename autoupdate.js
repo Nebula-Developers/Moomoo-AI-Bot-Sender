@@ -40,18 +40,16 @@ autoupdater.on("check.out-dated", function(v_old, v){
   function askForUpdate(data){
     const reply = data.split(/[\r\n]+/)[0].toUpperCase();
     if (reply === "Y"){
-      process.stdin.pause();
       autoupdater.fire("download-update");
     }else if (reply === "N"){
       console.log("The update will not be downloaded.");
-      process.exit();
+      console.log("You may close this window now.");
     }else{
       console.log("Invalid response.");
       console.log(`Your version (${v_old}) is outdated.\nWould you like to download version ${v}?\n(Y//N)`);
       process.stdin.once("data", askForUpdate);
     }
   }
-  process.stdin.resume();
   process.stdin.once("data", askForUpdate);
 });
 
@@ -64,7 +62,11 @@ autoupdater.on("update.not-installed", function (){
   autoupdater.fire("extract");
 });
 autoupdater.on("update.extracted", function (){
+  fs.writeFileSync(`${__dirname}/lastUpdated.txt`, Date.now().toString(), "utf8");
   console.log("Update installed successfully!");
+  console.log("Check showid.js for any changes and update your Tampermonkey script as necessary");
+  console.log("Changes will be stored in changelog.txt.")
+  console.log("Please restart the app for changes to take effect!");
 });
 autoupdater.on("download.start", function (name){
   console.log(`Downloading ${name}...`);
@@ -74,20 +76,18 @@ autoupdater.on("download.progress", function (name, perc){
 });
 autoupdater.on("download.end", function (name){
   console.log(`Finished downloading ${name}.`);
-  fs.writeFileSync(`${__dirname}/lastUpdated.txt`, Date.now().toString(), "utf8");
 });
 autoupdater.on("download.error", function (err){
   console.error(`Error when downloading: ${err}`);
 });
 autoupdater.on("end", function (){
   console.log("===== AUTO UPDATE FINISHED =====");
-  console.log("Check showid.js for any changes and update your Tampermonkey script as necessary.");
-  console.log("Changes will be stored in changelog.txt.")
-  console.log("Please restart the app for changes to take effect!");
-  process.exit();
+  console.log("You may close this window now.");
 });
 autoupdater.on("error", function (name, e){
   console.error(name, e);
 });
 
 autoupdater.fire("check");
+
+process.stdin.resume();
