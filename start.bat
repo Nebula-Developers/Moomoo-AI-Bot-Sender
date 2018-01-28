@@ -2,9 +2,7 @@
 cls
 color 0a
 title MooMoo Bot Sender W/ AI
-cd %CD%
 cls
-@echo off
 :start
 echo Menu:
 echo     1. Bot Sender
@@ -17,9 +15,11 @@ cls
 echo Probe by:
 echo     1. Tribe name
 echo     2. Player name
+echo     3. Both
 set /p probetype="Type: "
 cls
 if %probetype%==1 goto probebytribe
+if %probetype%==3 goto probeboth
 goto probebyname
 :probebytribe
 set /p probetribe="Please enter the tribe to search for: "
@@ -30,6 +30,13 @@ goto endprobe
 set /p probename="Please enter the player to search for: "
 cls
 node index.js --probeName %probename%
+goto endprobe
+:probeboth
+set /p probetribe="Please enter the tribe to search for: "
+cls
+set /p probename="Please enter the player to search for: "
+cls
+node index.js --probeTribe %probetribe% --probeName %probename%
 goto endprobe
 :endprobe
 echo ----------
