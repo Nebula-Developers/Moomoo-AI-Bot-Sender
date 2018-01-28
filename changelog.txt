@@ -1,3 +1,7 @@
+January 28, 2018 (1.2.0):
+  + No more need to manually setowner
+  + UPDATE YOUR TAMPERMONKEY SCRIPT!!!
+
 January 27, 2018 (1.1.1):
   + Added batch scripts to make using bots on Windows easier
 
