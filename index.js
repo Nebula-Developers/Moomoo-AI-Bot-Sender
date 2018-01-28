@@ -1,5 +1,7 @@
 const io = require("socket.io-client");
 const request = require("request");
+const http = require("http");
+const url = require("url");
 const fs = require("fs");
 const {spawn} = require("child_process");
 
@@ -23,6 +25,20 @@ try {
 const screen = computer && computer.getScreenSize();
 
 var args = parseFlags(process.argv.slice(2).join(" "), ["--num", "--link", "--tribe", "--name", "--randnames", "--chat", "--ai", "--probeTribe", "--probeName", "--autoHeal"]);
+
+const httpServer = http.createServer((req, res) => {
+  const args = url.parse(req.url, true).query;
+  if (args.ownerID){
+    ownerID = args.ownerID;
+    console.log(`Set owner ID to ${args.ownerID}`);
+  }
+  res.writeHead(204);
+  res.end();
+});
+httpServer.on("listening", () => {
+  console.log(`Http server ready at ${Date.now()}`);
+});
+httpServer.listen(15729);
 
 var ownerID = null;
 var followID = null;
