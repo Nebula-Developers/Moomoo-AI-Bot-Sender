@@ -25,7 +25,7 @@
     "node": ">=7.6.0"
   },
   "auto-updater": {
-    "repo": "/Mega-Mewthree/Moomoo-AI-Bot-Sender",
+    "repo": "Mega-Mewthree/Moomoo-AI-Bot-Sender",
     "branch": "master"
   }
 }
