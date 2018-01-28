@@ -35,7 +35,14 @@ const autoupdater = new AutoUpdater({
 
 process.stdin.setEncoding("utf8");
 
-autoupdater.on("check.out-dated", function(v_old, v){
+autoupdater.on("check.up-to-date", function (v){
+  autoupdater.removeAllListeners("end");
+  fs.writeFileSync(`${__dirname}/lastUpdated.txt`, Date.now().toString(), "utf8");
+  console.log(`Your version (${v}) is up to date.`);
+  setTimeout(process.exit, 2500);
+});
+
+autoupdater.on("check.out-dated", function (v_old, v){
   console.log(`Your version (${v_old}) is outdated.\nWould you like to download version ${v}?\n(Y//N)`);
   function askForUpdate(data){
     const reply = data.split(/[\r\n]+/)[0].toUpperCase();
@@ -82,6 +89,8 @@ autoupdater.on("download.error", function (err){
 autoupdater.on("end", function (){
   fs.writeFileSync(`${__dirname}/lastUpdated.txt`, Date.now().toString(), "utf8");
   console.log("===== AUTO UPDATE FINISHED =====");
+  console.log(`Newest Updates:\n${fs.readFileSync(`${__dirname}/changelog.txt`, "utf8").split(/\r?\n\r?\n/).slice(0, 3).join("\n\n")}`);
+  console.log("Please read the changelog carefully.");
   console.log("You may close this window now.");
 });
 autoupdater.on("error", function (name, e){
