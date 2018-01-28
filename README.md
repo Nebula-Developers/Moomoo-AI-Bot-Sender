@@ -81,6 +81,8 @@ See the next section for information on everything after `node index.js`.
 
 There are two main modes to this bot, probing and botting.
 
+#### NEW: Open start.bat to get an easier to use UI! For people who can't use the command line very well!
+
 ### Botting
 
 Type "setowner \<your ID>" into the node.js console to make the bot obey your commands.
