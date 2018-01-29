@@ -1,3 +1,6 @@
+January 28, 2018 (1.2.1)
+  + Made autoheal default to true instead of false
+
 January 28, 2018 (1.2.0):
   + No more need to manually setowner
   + UPDATE YOUR TAMPERMONKEY SCRIPT!!!
