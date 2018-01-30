@@ -7,7 +7,7 @@ This script is a very configurable botting tool for the MMO game [Moomoo.io](htt
 * [Discord Server](https://discord.gg/Uj3GWPy)
 * [Subreddit](https://reddit.com/r/Nebula_Devs)
 
-For contributers: [To-Do List](https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Sender/projects/1)
+For contributors: [To-Do List](https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Sender/projects/1)
 
 ## Installation
 
