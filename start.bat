@@ -53,4 +53,4 @@ set ai="false"
 if /I %autoheal%==N set autoheal="false" & goto exec
 set autoheal="true"
 :exec
-node index.js --num %numbots% --link %partylink% --tribe %tribename% --name %botnick% --chat %chatmsg% --ai %ai% --autoheal %autoheal%
+node index.js --num %numbots% --link %partylink% --tribe %tribename% --name %botnick% --chat %chatmsg% --ai %ai% --autoHeal %autoheal%
