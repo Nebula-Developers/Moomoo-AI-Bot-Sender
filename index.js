@@ -1284,7 +1284,7 @@ class Bot {
 		this.socket.disconnect();
   }
   spawn(){
-    this.socket && this.socket.emit("1", {name: this.name, moofoll: true, skin: 0});
+    this.socket && this.socket.emit("1", {name: this.name, moofoll: true, skin: Math.round(Math.random() * 5)});
 		this.socket && this.socket.emit("7", 1);
   }
   join(){
