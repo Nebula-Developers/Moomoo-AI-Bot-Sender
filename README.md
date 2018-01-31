@@ -107,7 +107,7 @@ Type "setowner \<your ID>" into the node.js console to make the bot obey your co
 
 `--autoHeal` enables auto healing. Default: `true`
 
-`--randSkins` randomizes the skin color of bots. Default: `true`
+`--randSkins` randomizes the skin color of bots. Default: `false`
 
 ### Probing
 
