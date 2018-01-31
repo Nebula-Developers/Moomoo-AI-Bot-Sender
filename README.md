@@ -11,47 +11,13 @@ For contributors: [To-Do List](https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Se
 
 ## Installation
 
+**If you've already installed and it says Robotjs wasn't installed, [click here](#enabling-mouse-following) to find out how to fix that!!**
+
 **NEW VIDEO INSTALLATION GUIDE:** https://www.youtube.com/watch?v=6QfVIt5V4oI
 
 First, you must download and install Node.js: https://nodejs.org/en/
 
 For all the Windows users who have no clue how to open a Command Prompt terminal/console, open `openCommandPrompt.bat`.
-
-### Install Compilers to Make Follow Mouse Command Work (Optional)
-
-If you have already installed the bot code, run `npm uninstall robotjs` in your console/terminal inside of the bot code's directory.
-
-#### Windows
-
-Download and install Visual C++ Build Tools 2015 [here](http://landinghub.visualstudio.com/visual-cpp-build-tools).
-
-Download and install Python 2.7.x [here](https://www.python.org/downloads/release/python-2714/).
-
-Run the following commands in your console (Command Prompt/Powershell):
-
-  `npm config set python python2.7`
-  
-  `npm config set msvs_version 2015`
-  
-#### Mac OS X
-
-Download and install Python 2.7.x [here](https://www.python.org/downloads/release/python-2714/) if it isn't already installed.
-
-Download and install Xcode [here](https://developer.apple.com/xcode/download/).
-
-#### Unix
-
-You need Python 2.7.x and `make`.
-
-Download and install GCC [here](https://gcc.gnu.org/).
-
-#### All Systems
-
-Run the following command in your console/terminal inside of the bot code's directory:
-
-  `npm install robotjs`
-
-### Install the Bot Code (Required)
 
 After Node.js is installed, run the below command in your console inside this folder. It is required to install important code the script depends on to run, and you can do that easily with the following command:
 
@@ -59,21 +25,15 @@ After Node.js is installed, run the below command in your console inside this fo
     
 Or you can run `npminstall.bat` if you are on Windows and you have no clue how to get to a console.
 
-Install a userscript manager:
+Install Tampermonkey for your browser (click the name and you'll be taken to the extension directory's listing on your browser):
 
-Chrome: [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en)
+* [Tampermonkey for Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) ([Beta](https://chrome.google.com/webstore/detail/tampermonkey-beta/gcalenpjmijncebpfijmoaglllgpjagf))
+* [Tampermonkey for Firefox](https://addons.mozilla.org/firefox/addon/tampermonkey/)
+* [Tampermonkey for Safari](http://tampermonkey.net/?browser=safari)
+* [Tampermonkey for Microsoft Edge](https://www.microsoft.com/store/p/tampermonkey/9nblggh5162s)
+* [Tampermonkey for Opera](https://addons.opera.com/extensions/details/tampermonkey-beta/)
 
-Firefox: [Tampermonkey](https://addons.mozilla.org/firefox/addon/tampermonkey/)
-
-Safari: [Tampermonkey](http://tampermonkey.net/?browser=safari)
-
-Microsoft Edge: [Tampermonkey](https://www.microsoft.com/store/p/tampermonkey/9nblggh5162s)
-
-Opera: [Tampermonkey](https://addons.opera.com/extensions/details/tampermonkey-beta/)
-
-
-Put the code in showid.js into Tampermonkey so that your ID is visible.
-
+Put the code in `showid.js` into Tampermonkey so that your ID is visible.
 
 Here is the start script:
 
@@ -83,13 +43,13 @@ See the next section for information on everything after `node index.js`.
 
 ## Configuration
 
-There are two main modes to this bot, probing and botting.
+There are two main modes to this bot, probing and botting. Each one comes with a different set of configuration settings.
 
 #### NEW: Open start.bat to get an easier to use UI! For people who can't use the command line very well! (Windows only)
 
 ### Botting
 
-Type "setowner \<your ID>" into the node.js console to make the bot obey your commands.
+Type `setowner <your ID>` into the node.js console to make the bot obey your commands.
 
 `--num` sets the number of bots. Required for bots to function. Default: `0`
 
@@ -109,9 +69,9 @@ Type "setowner \<your ID>" into the node.js console to make the bot obey your co
 
 ### Probing
 
-`--probeTribe` searches all Moomoo.io servers for any tribes with the given name and returns the IPs so you can use them with --link.
+`--probeTribe` searches all Moomoo.io servers for any tribes with the given name and returns the IPs so you can use them with `--link`.
 
-`--probeName` does almost the same thing as --probeTribe, but searches the leaderboards for a player with the given name.
+`--probeName` does almost the same thing as `--probeTribe`, but searches the leaderboards for a player with the given name.
 
 You can probe (search) for a name on the leaderboard or a tribe on all the public Moomoo.io servers. This is useful if you want to use the other part of this script to put bots on someone's livestream.
 
@@ -128,6 +88,37 @@ Here is the start script for probing using a name on the leaderboard:
 Similar to the other command, this will return a list of server IPs which have the player `Lucario` on the leaderboard.
 
 You can put both the outputs into `--link` for the botting start script.
+
+### Enabling Mouse-Following
+
+You must install compilers in order to make the mouse-following functionality work.
+
+If you have already installed the bot code, run `npm uninstall robotjs` in your console/terminal inside of the bot code's directory.
+
+#### Windows
+
+Download and install [Visual C++ Build Tools 2015](http://landinghub.visualstudio.com/visual-cpp-build-tools) and [Python 2.7.x](https://www.python.org/downloads/release/python-2714/).
+
+Run the following commands in your console (Command Prompt/Powershell):
+
+    npm config set python python2.7
+    npm config set msvs_version 2015
+  
+#### macOS
+
+Download and install [Python 2.7.x](https://www.python.org/downloads/release/python-2714/) and [Xcode](https://developer.apple.com/xcode/download/) if they aren't already installed.
+
+#### Unix
+
+You need Python 2.7.x and `make`.
+
+Download and install GCC [here](https://gcc.gnu.org/).
+
+#### All Systems
+
+Run the following command in your console/terminal inside of the bot code's directory:
+
+    npm install robotjs
 
 ## Console Commands
 
