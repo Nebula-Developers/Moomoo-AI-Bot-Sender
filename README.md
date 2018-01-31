@@ -51,6 +51,8 @@ There are two main modes to this bot, probing and botting. Each one comes with a
 
 Type `setowner <your ID>` into the node.js console to make the bot obey your commands.
 
+Flag | Description | Type | Default
+
 `--num` sets the number of bots. Required for bots to function. Default: `0`
 
 `--link` sets the Moomoo party link. Required for bots to function. Default: none
