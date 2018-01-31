@@ -1,5 +1,6 @@
-January 31, 2018 (1.2.3)
-  + Skin colors are now randomized
+January 31, 2018 (1.3.0)
+  + Random skin colors with --randSkins
+  + BREAKING CHANGE: --randnames renamed to --randNames
 
 January 30, 2018 (1.2.2)
   + Fixed autoHeal flag in start.bat
