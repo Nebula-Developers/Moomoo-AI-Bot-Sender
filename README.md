@@ -77,7 +77,7 @@ Put the code in showid.js into Tampermonkey so that your ID is visible.
 
 Here is the start script:
 
-    node index.js [--probeTribe tribeName] [--probeName playerName] [--num numberOfBots] [--link moomooPartyLink] [--tribe tribeName] [--name botName] [--randnames true] [--chat chatMessage] [--ai true] [--autoHeal true]
+    node index.js [--probeTribe tribeName] [--probeName playerName] [--num numberOfBots] [--link moomooPartyLink] [--tribe tribeName] [--name botName] [--randNames true] [--chat chatMessage] [--ai true] [--autoHeal true]
     
 See the next section for information on everything after `node index.js`.
 
@@ -99,7 +99,7 @@ Type "setowner \<your ID>" into the node.js console to make the bot obey your co
 
 `--name` sets the bots' names. Default: `unknown`
 
-`--randnames` selects random names for the bots. Default: `false`
+`--randNames` selects random names for the bots. Default: `false`
 
 `--chat` sets the bots' chat message. Default: none
 
