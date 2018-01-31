@@ -107,6 +107,8 @@ Type "setowner \<your ID>" into the node.js console to make the bot obey your co
 
 `--autoHeal` enables auto healing. Default: `true`
 
+`--randomSkin` randomizes the skin color of bots. Default: `true`
+
 ### Probing
 
 `--probeTribe` searches all Moomoo.io servers for any tribes with the given name and returns the IPs so you can use them with --link.
