@@ -1360,7 +1360,7 @@ var probeTribe = args.probeTribe && args.probeTribe.value;
 var probeName = args.probeName && args.probeName.value;
 var probe = probeTribe || probeName;
 var autoHeal = !args.autoHeal || (args.autoHeal.value.toLowerCase() != "false" && args.autoHeal.value.toLowerCase() != "0");
-var randomSkin = !args.randomSkin || (args.randomSkin.value.toLowerCase() != "false" && args.randomSkin.value.toLowerCase() != "0");
+var randomSkin = args.randomSkin && args.randomSkin.value.toLowerCase() != "false" && args.randomSkin.value.toLowerCase() != "0";
 typeof name === "string" && (name = name.slice(0, 16));
 tribe && (tribe = tribe.slice(0, 6));
 chat && (chat = chat.slice(0, 30));
