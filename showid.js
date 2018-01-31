@@ -15,26 +15,24 @@ var ws = null;
 var id = null;
 var pos = [];
 
-WebSocket.prototype.oldSend = WebSocket.prototype.send;
-WebSocket.prototype.send = function(m){
-    this.oldSend(m);
-    if (!ws){
+WebSocket = class extends WebSocket {
+    constructor(...arg) {
+        super(...arg);
         ws = this;
-        socketFound(this);
+        this.addEventListener('message', function(e){
+            handleMessage(e);
+        });
     }
 };
-
-function socketFound(socket){
-    socket.addEventListener('message', function(e){
-        handleMessage(e);
-    });
-}
 
 function handleMessage(e){
     var m = e.data;
     if (!m.startsWith(`42["2",`) && !m.startsWith(`42["3",`) && !m.startsWith(`42["5",`) && !m.startsWith(`42["6",`)) displayID();
     if (m.startsWith(`42["1",`)){
         id = /(42\[\"1\",)([0-9]+)\]/.exec(m)[2];
+        const req = new XMLHttpRequest();
+        req.open("POST", `http://localhost:15729/?ownerID=${id}`, true);
+        req.send();
     }else if (m.startsWith(`42["3",`)){
         var packet = m.replace(`42["3",`, "");
         packet = packet.substr(0, packet.length - 1);
@@ -53,3 +51,11 @@ function displayID(){
     var age = /AGE [0-9]+/.exec(t.innerHTML);
     t.innerHTML = `${age && age[0]} (${id}) [${pos.join(", ")}]`;
 }
+
+setInterval(() => {
+    if (id){
+        const req = new XMLHttpRequest();
+        req.open("POST", `http://localhost:15729/?ownerID=${id}`, true);
+        req.send();
+    }
+}, 5000);

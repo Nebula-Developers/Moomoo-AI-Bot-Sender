@@ -1,5 +1,18 @@
 const io = require("socket.io-client");
 const request = require("request");
+const http = require("http");
+const url = require("url");
+const fs = require("fs");
+const {spawn} = require("child_process");
+
+if (!fs.existsSync(`${__dirname}/lastUpdated.txt`) || Date.now() - parseInt(fs.readFileSync(`${__dirname}/lastUpdated.txt`, "utf8")) > 43200000){
+  spawn("node", [`${__dirname}/autoupdate.js`], {
+    stdio: "ignore",
+    shell: true,
+    detached: true
+  });
+}
+
 var computer = null;
 
 try {
@@ -12,6 +25,20 @@ try {
 const screen = computer && computer.getScreenSize();
 
 var args = parseFlags(process.argv.slice(2).join(" "), ["--num", "--link", "--tribe", "--name", "--randnames", "--chat", "--ai", "--probeTribe", "--probeName", "--autoHeal"]);
+
+const httpServer = http.createServer((req, res) => {
+  const args = url.parse(req.url, true).query;
+  if (args.ownerID){
+    ownerID = args.ownerID;
+    console.log(`Set owner ID to ${args.ownerID}`);
+  }
+  res.writeHead(204);
+  res.end();
+});
+httpServer.on("listening", () => {
+  console.log(`Http server ready at ${Date.now()}`);
+});
+httpServer.listen(15729);
 
 var ownerID = null;
 var followID = null;
@@ -1329,7 +1356,7 @@ var ai = args.ai && args.ai.value.toLowerCase() != "false" && args.ai.value.toLo
 var probeTribe = args.probeTribe && args.probeTribe.value;
 var probeName = args.probeName && args.probeName.value;
 var probe = probeTribe || probeName;
-var autoHeal = args.autoHeal && args.autoHeal.value.toLowerCase() != "false" && args.autoHeal.value.toLowerCase() != "0";
+var autoHeal = !args.autoHeal || (args.autoHeal.value.toLowerCase() != "false" && args.autoHeal.value.toLowerCase() != "0");
 typeof name === "string" && (name = name.slice(0, 16));
 tribe && (tribe = tribe.slice(0, 6));
 chat && (chat = chat.slice(0, 30));

@@ -7,6 +7,8 @@ This script is a very configurable botting tool for the MMO game [Moomoo.io](htt
 * [Discord Server](https://discord.gg/Uj3GWPy)
 * [Subreddit](https://reddit.com/r/Nebula_Devs)
 
+For contributors: [To-Do List](https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Sender/projects/1)
+
 ## Installation
 
 **If you've already installed and it says Robotjs wasn't installed, [click here](#enabling-mouse-following) to find out how to fix that!!**
@@ -15,10 +17,14 @@ This script is a very configurable botting tool for the MMO game [Moomoo.io](htt
 
 First, you must download and install Node.js: https://nodejs.org/en/
 
+For all the Windows users who have no clue how to open a Command Prompt terminal/console, open `openCommandPrompt.bat`.
+
 After Node.js is installed, run the below command in your console inside this folder. It is required to install important code the script depends on to run, and you can do that easily with the following command:
 
     npm install
     
+Or you can run `npminstall.bat` if you are on Windows and you have no clue how to get to a console.
+
 Install Tampermonkey for your browser (click the name and you'll be taken to the extension directory's listing on your browser):
 
 * [Tampermonkey for Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) ([Beta](https://chrome.google.com/webstore/detail/tampermonkey-beta/gcalenpjmijncebpfijmoaglllgpjagf))
@@ -39,9 +45,27 @@ See the next section for information on everything after `node index.js`.
 
 There are two main modes to this bot, probing and botting. Each one comes with a different set of configuration settings.
 
+#### NEW: Open start.bat to get an easier to use UI! For people who can't use the command line very well! (Windows only)
+
 ### Botting
 
 Type `setowner <your ID>` into the node.js console to make the bot obey your commands.
+
+`--num` sets the number of bots. Required for bots to function. Default: `0`
+
+`--link` sets the Moomoo party link. Required for bots to function. Default: none
+
+`--tribe` sets the Moomoo tribe. Default: none
+
+`--name` sets the bots' names. Default: `unknown`
+
+`--randnames` selects random names for the bots. Default: `false`
+
+`--chat` sets the bots' chat message. Default: none
+
+`--ai` enables using commands. If AI is not enabled, the bots spawn and do nothing. Default: `false`
+
+`--autoHeal` enables auto healing. Default: `true`
 
 ### Probing
 
