@@ -77,7 +77,7 @@ Put the code in showid.js into Tampermonkey so that your ID is visible.
 
 Here is the start script:
 
-    node index.js [--probeTribe tribeName] [--probeName playerName] [--num numberOfBots] [--link moomooPartyLink] [--tribe tribeName] [--name botName] [--randNames true] [--chat chatMessage] [--ai true] [--autoHeal true]
+    node index.js [--probeTribe tribeName] [--probeName playerName] [--num numberOfBots] [--link moomooPartyLink] [--tribe tribeName] [--name botName] [--randNames true] [--chat chatMessage] [--ai true] [--autoHeal true] [--randSkins true]
     
 See the next section for information on everything after `node index.js`.
 
