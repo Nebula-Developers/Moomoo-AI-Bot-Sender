@@ -1,4 +1,4 @@
-January 30, 2018 #2 (1.2.3)
+January 31, 2018 (1.2.3)
   + Skin colors are now randomized
 
 January 30, 2018 (1.2.2)
