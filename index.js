@@ -5,6 +5,9 @@ const url = require("url");
 const fs = require("fs");
 const {spawn} = require("child_process");
 
+const logger = require("winston");
+logger.level = "info";
+
 if (!fs.existsSync(`${__dirname}/lastUpdated.txt`) || Date.now() - parseInt(fs.readFileSync(`${__dirname}/lastUpdated.txt`, "utf8")) > 43200000){
   spawn("node", [`${__dirname}/autoupdate.js`], {
     stdio: "ignore",
@@ -19,7 +22,7 @@ try {
 	require.resolve("robotjs");
 	computer = require("robotjs");
 }catch(e){
-	console.error("Robot.js was not installed correctly. Follow mouse function is disabled.");
+	logger.warn("Robot.js was not installed correctly. Follow mouse function is disabled.");
 }
 
 const screen = computer && computer.getScreenSize();
@@ -30,13 +33,13 @@ const httpServer = http.createServer((req, res) => {
   const args = url.parse(req.url, true).query;
   if (args.ownerID){
     ownerID = args.ownerID;
-    console.log(`Set owner ID to ${args.ownerID}`);
+    logger.info(`Set owner ID to ${args.ownerID}.`);
   }
   res.writeHead(204);
   res.end();
 });
 httpServer.on("listening", () => {
-  console.log(`Http server ready at ${Date.now()}`);
+  logger.info(`The HTTP server is ready at ${Date.now()}.`);
 });
 httpServer.listen(15729);
 
@@ -1052,7 +1055,7 @@ class Bot {
         this.socket.removeAllListeners();
   			this.socket = null;
         if (bots.length === 0){
-          console.log("Probe finished.");
+          logger.info("Probe finished.");
           process.exit();
         }
   		});
@@ -1068,7 +1071,7 @@ class Bot {
       // Leaderboard
       sk.on("5", data => {
         if (probeName && data.indexOf(probeName) > -1){
-          console.log(`${this.ip}`);
+          logger.info(`Found matching server: ${this.ip}`);
           sk.disconnect();
         }
       });
@@ -1076,7 +1079,7 @@ class Bot {
       sk.on("id", (data) => {
         data.teams.forEach(t => {
           if (probeTribe && t.sid == probeTribe){
-            console.log(`${this.ip}`);
+            logger.info(`Found matching server: ${this.ip}`);
             sk.disconnect();
           }
         });
@@ -1085,7 +1088,7 @@ class Bot {
     }else{
       sk.once("disconnect", () => {
         bots.splice(bots.indexOf(this), 1);
-        console.log(`${this.number} disconnected`);
+        logger.info(`${this.number} disconnected`);
   			clearInterval(this.chatInterval);
         clearInterval(this.reqint);
         clearInterval(this.updateInterval);
@@ -1094,13 +1097,13 @@ class Bot {
   			this.socket = null;
   		});
   		sk.once("connect", () => {
-        console.log(`${this.number} connected`);
+        logger.info(`${this.number} connected`);
         bots.push(this);
         this.spawn();
   		});
       // Spawn (id)
       sk.on("1", r => {
-        console.log(`${this.number} spawned`);
+        logger.info`${this.number} spawned`);
   			this.id = r;
   			this.tribe && sk.emit("8", this.tribe);
         if (this.chatMsg) this.chatInterval = setInterval(this.chat.bind(this), 3000);
@@ -1170,7 +1173,7 @@ class Bot {
       }
       // Death
       sk.on("11", () => {
-        console.log(`${this.number} died`);
+        logger.info(`${this.number} died`);
         clearInterval(this.chatInterval);
         clearInterval(this.reqint);
         clearInterval(this.updateInterval);
@@ -1364,7 +1367,7 @@ tribe && (tribe = tribe.slice(0, 6));
 chat && (chat = chat.slice(0, 30));
 
 if (probe){
-  console.log(`Initiating probe for${probeTribe ? ` tribe ${probeTribe}` : ""}${probeName ? ` player ${probeName}` : ""}.`);
+  logger.info(`Initiating probe for${probeTribe ? ` tribe ${probeTribe}` : ""}${probeName ? ` player ${probeName}` : ""}.`);
   (function connectBots(i){
     if (i <= 0) return;
     var promises = [];
