@@ -1009,7 +1009,7 @@ let tribes = {};
 let players = {};
 
 class Bot {
-  constructor(n, ip, name, tribe, chatMsg, ai, probe, autoHeal, randomSkin){
+  constructor(n, ip, name, tribe, chatMsg, ai, probe, autoHeal, randSkins){
     this.number = n;
     this.ip = ip;
     this.name = name || "unknown";
@@ -1019,7 +1019,7 @@ class Bot {
     this.ai = ai;
     this.probe = probe;
     this.autoHeal = autoHeal;
-    this.randomSkin = randomSkin;
+    this.randSkins = randSkins;
     this.pos = {
       x: 0,
       y: 0
@@ -1285,7 +1285,7 @@ class Bot {
 		this.socket.disconnect();
   }
   spawn(){
-	let skin = randomSkin ? Math.round(Math.random() * 5) : 0;
+	let skin = this.randSkins ? Math.round(Math.random() * 5) : 0;
 	  
     this.socket && this.socket.emit("1", {name: this.name, moofoll: true, skin: skin});
 		this.socket && this.socket.emit("7", 1);
@@ -1371,7 +1371,7 @@ if (probe){
     if (i <= 0) return;
     var promises = [];
     for (var j = i; (j > i - 8) && (j > 0); j--){
-      promises.push(new Bot(j, allServers[j - 1].ip, "PROBE", tribe, chat, ai, probe, autoHeal).connect())
+      promises.push(new Bot(j, allServers[j - 1].ip, "PROBE", tribe, chat, ai, probe, autoHeal, randSkins).connect())
     }
     Promise.all(promises).then(() => {
       connectBots(i - 8);
