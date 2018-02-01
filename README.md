@@ -77,7 +77,7 @@ Put the code in showid.js into Tampermonkey so that your ID is visible.
 
 Here is the start script:
 
-    node index.js [--probeTribe tribeName] [--probeName playerName] [--num numberOfBots] [--link moomooPartyLink] [--tribe tribeName] [--name botName] [--randNames true] [--chat chatMessage] [--ai true] [--autoHeal true] [--randSkins true]
+    node index.js [--probeTribe tribeName] [--probeName playerName] [--num numberOfBots] [--link moomooPartyLink] [--tribe tribeName] [--name botName] [--randNames true] [--chat chatMessage] [--ai true] [--autoHeal true] [--randSkins true] [--logging info]
     
 See the next section for information on everything after `node index.js`.
 
@@ -85,7 +85,9 @@ See the next section for information on everything after `node index.js`.
 
 There are two main modes to this bot, probing and botting.
 
-#### NEW: Open start.bat to get an easier to use UI! For people who can't use the command line very well! (Windows only)
+**NEW: Open start.bat to get an easier to use UI! For people who can't use the command line very well! (Windows only)**
+
+The `--logging` flag, which by default is `info`, sets the level of logging to use. Potential options are `debug`, `info`, `warn`, and `error`.
 
 ### Botting
 
