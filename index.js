@@ -307,7 +307,7 @@ class Bot {
             p.y = data[2 + i * 13],
             p.angle = data[3 + i * 13],
             p.lastUpdated = Date.now()
-          } 
+          }
         }
         this.update();
       });
@@ -445,7 +445,7 @@ class Bot {
   disconnect(){
 		this.socket.disconnect();
   }
-  spawn(){  
+  spawn(){
     this.socket && this.socket.emit("1", {name: this.name, moofoll: true, skin: this.randSkins ? Math.round(Math.random() * 5) : 0});
 		this.socket && this.socket.emit("7", 1);
   }
@@ -530,7 +530,7 @@ if (probe){
     if (i <= 0) return;
     var promises = [];
     for (var j = i; (j > i - 8) && (j > 0); j--){
-      promises.push(new Bot(j, allServers[j - 1].ip, "PROBE", tribe, chat, ai, probe, autoHeal, randSkins).connect())
+      promises.push(new Bot(j, allServers[j - 1], "PROBE", tribe, chat, ai, probe, autoHeal, randSkins).connect())
     }
     Promise.all(promises).then(() => {
       connectBots(i - 8);
