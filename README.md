@@ -25,7 +25,7 @@ If you have already installed the bot code, run `npm uninstall robotjs` in your 
 
 Download and install Visual C++ Build Tools 2015 [here](http://landinghub.visualstudio.com/visual-cpp-build-tools).
 
-Download and install Python 2.7.x [here](https://www.python.org/downloads/release/python-2714/).
+Download and install Python 2.7.x [here](https://www.python.org/downloads/release/python-2714/). Make sure you select the option to add it to PATH.
 
 Run the following commands in your console (Command Prompt/Powershell):
 
