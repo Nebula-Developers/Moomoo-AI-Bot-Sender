@@ -11,7 +11,8 @@
   "dependencies": {
     "auto-updater": "^1.0.2",
     "request": "^2.83.0",
-    "socket.io": "^2.0.4"
+    "socket.io": "^2.0.4",
+    "winston": "2.4.x"
   },
   "optionalDependencies": {
     "robotjs": "^0.4.7"
