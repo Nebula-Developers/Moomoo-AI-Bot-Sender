@@ -2,7 +2,7 @@
 
 This script is a very configurable botting tool for the MMO game [Moomoo.io](http://moomoo.io).
 
-## WARNING: Please do not download any code that claims that it will "fix" or "add features" to this bot code. People have been including trojans and viruses in these unofficial programs. The ONLY official Moomoo bot code authors are Mega-Mewthree and Nebula-Devs. DO NOT download any other code related to Moomoo bots.
+## WARNING: Please do not download any code that claims that it will "fix" or "add features" to this bot code. People have been including trojans and viruses in those unofficial programs. The ONLY official Moomoo bot code authors are Mega-Mewthree and Nebula-Devs. DO NOT download any other code related to Moomoo bots.
 
 ## Resources
 
