@@ -5,6 +5,78 @@ const url = require("url");
 const fs = require("fs");
 const {spawn} = require("child_process");
 
+const yargs = require("yargs");
+
+yargs
+  .command("probe", "Search public servers using a name on the leaderboard or tribe name.", {
+	"name": {
+		alias: ["n", "username"],
+		conflicts: "tribe", // until we get it them to work together, with an AND statement
+		description: "Looks for the given name on each server's leaderboard.",
+		type: "string"
+	},
+	"tribe": {
+		alias: "t",
+		conflicts: "name",
+		description: "Looks for the given tribe on each server's list of tribes.",
+		type: "string"
+	}
+  })
+  .command("send", "Send bots to a Moomoo.io server", {
+	"link": {
+		alias: ["party", "partyLink", "server", "serverLink", "serverAddress", "ip"],
+		description: "The party link or IP that the bots should connect with/to.",
+		type: "string"
+		
+	},
+	"amount": {
+		alias: ["num", "count", "number"],
+		description: "The number of bots to send.",
+		type: "number",
+		default: 15
+	},
+	"name": {
+		alias: ["n", "username"],
+		description: "The name for all bots to use.",
+		type: "string",
+		default: ""
+	},
+	"tribe": {
+		alias: "t",
+		description: "The tribe to join.",
+		type: "string"
+	},
+	"randNames": {
+		description: "Whether to use a random (human) name for each bot.",
+		type: "boolean",
+		default: false
+	},
+	"chatMessage": {
+		alias: ["chat", "message", "text"],
+		description: "The message that the bots will constantly send.",
+		type: "string"
+	},
+	"ai": {
+		alias: ["commands", "behavior"],
+		description: "Enables using commands. If AI is not enabled, the bots spawn and do nothing.",
+		type: "boolean",
+		default: false
+	},
+	"autoHeal": {
+		alias: ["heal", "healing"],
+		description: "Enables bots trying to heal if they are damaged.",
+		type: "boolean",
+		default: true
+	}
+	"randSkins": {
+		description: "Whether to randomize the skin color of each bot.",
+		type: "boolean",
+		default: true
+	},
+  })
+  .help()
+  .argv;
+
 if (!fs.existsSync(`${__dirname}/lastUpdated.txt`) || Date.now() - parseInt(fs.readFileSync(`${__dirname}/lastUpdated.txt`, "utf8")) > 43200000){
   spawn("node", [`${__dirname}/autoupdate.js`], {
     stdio: "ignore",
