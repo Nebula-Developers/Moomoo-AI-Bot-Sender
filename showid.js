@@ -11,16 +11,14 @@
 // @run-at       document-start
 // ==/UserScript==
 
-let showidScript = {};
+var showidScript = {};
 
-var showidScript.ws = null;
-var showidScript.id = null;
-var showidScript.pos = [];
+showidScript.id = null;
+showidScript.pos = [];
 
 WebSocket = class extends WebSocket {
     constructor(...arg) {
         super(...arg);
-        showidScript.ws = this;
         this.addEventListener('message', function(e){
             handleMessage(e);
         });
@@ -32,9 +30,7 @@ function handleMessage(e){
     if (!m.startsWith(`42["2",`) && !m.startsWith(`42["3",`) && !m.startsWith(`42["5",`) && !m.startsWith(`42["6",`)) displayID();
     if (m.startsWith(`42["1",`)){
         showidScript.id = /(42\[\"1\",)([0-9]+)\]/.exec(m)[2];
-        const req = new XMLHttpRequest();
-        req.open("POST", `http://localhost:15729/?ownerID=${id}`, true);
-        req.send();
+        sendOwnerID(showidScript.id);
     }else if (m.startsWith(`42["3",`)){
         let packet = m.replace(`42["3",`, "");
         packet = packet.substr(0, packet.length - 1);
@@ -55,9 +51,16 @@ function displayID(){
 }
 
 setInterval(() => {
-    if (showidScript.id){
-        const req = new XMLHttpRequest();
-        req.open("POST", `http://localhost:15729/?ownerID=${showidScript.id}`, true);
-        req.send();
-    }
+    sendOwnerID(showidScript.id);
 }, 5000);
+
+function sendOwnerID(id) {
+    if (!showidScript.id) return;
+
+    try {
+        const req = new XMLHttpRequest();
+
+        req.open("POST", `http://localhost:15729/?ownerID=${id}`, true);
+        req.send();
+    } catch (err) {}
+}
