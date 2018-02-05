@@ -1166,6 +1166,12 @@ class Bot {
           }
         }
       });
+
+      // Resource obtained
+      sk.on("9", (type, amount) => {
+        this.materials[type] = amount;
+      });
+
       // Damaged
       if (this.autoHeal){
 	sk.on("10", (id, health) => {
