@@ -1318,8 +1318,8 @@ class Bot {
   }
   tryHatOn(){
     if (this.hatID && this.materials["gold"] > hats[this.hatID]) {
-      this.socket.emit("13", true, this.hatID);
-      this.socket.emit("13", false, this.hatID);
+      this.socket.emit("13", this.hatID, 1);
+      this.socket.emit("13", this.hatID, 0);
     }
   }
   chat(){
