@@ -24,7 +24,7 @@ try {
 
 const screen = computer && computer.getScreenSize();
 
-var args = parseFlags(process.argv.slice(2).join(" "), ["--num", "--link", "--tribe", "--name", "--randNames", "--randSkins", "--chat", "--ai", "--probeTribe", "--probeName", "--autoHeal"]);
+var args = parseFlags(process.argv.slice(2).join(" "), ["--num", "--link", "--tribe", "--name", "--randNames", "--randSkins", "--chat", "--ai", "--probeTribe", "--probeName", "--autoHeal", "--hat"]);
 
 const httpServer = http.createServer((req, res) => {
   const args = url.parse(req.url, true).query;
@@ -1146,7 +1146,7 @@ class Bot {
             p.y = data[2 + i * 13],
             p.angle = data[3 + i * 13],
             p.lastUpdated = Date.now()
-          } 
+          }
         }
         this.update();
       });
@@ -1284,7 +1284,7 @@ class Bot {
   disconnect(){
 		this.socket.disconnect();
   }
-  spawn(){  
+  spawn(){
     this.socket && this.socket.emit("1", {name: this.name, moofoll: true, skin: this.randSkins ? Math.round(Math.random() * 5) : 0});
 		this.socket && this.socket.emit("7", 1);
   }
@@ -1359,6 +1359,7 @@ var probeName = args.probeName && args.probeName.value;
 var probe = probeTribe || probeName;
 var autoHeal = !args.autoHeal || (args.autoHeal.value.toLowerCase() != "false" && args.autoHeal.value.toLowerCase() != "0");
 var randSkins = args.randSkins && args.randSkins.value.toLowerCase() != "false" && args.randSkins.value.toLowerCase() != "0";
+var hatID = (args.num && parseInt(args.num.value)) || undefined;
 typeof name === "string" && (name = name.slice(0, 16));
 tribe && (tribe = tribe.slice(0, 6));
 chat && (chat = chat.slice(0, 30));
@@ -1369,7 +1370,7 @@ if (probe){
     if (i <= 0) return;
     var promises = [];
     for (var j = i; (j > i - 8) && (j > 0); j--){
-      promises.push(new Bot(j, allServers[j - 1].ip, "PROBE", tribe, chat, ai, probe, autoHeal, randSkins).connect())
+      promises.push(new Bot(j, allServers[j - 1].ip, "PROBE", tribe, chat, ai, probe, autoHeal, randSkins, hatID).connect())
     }
     Promise.all(promises).then(() => {
       connectBots(i - 8);
@@ -1380,7 +1381,7 @@ if (probe){
     if (i <= 0) return;
     var promises = [];
     for (var j = i; (j > i - 8) && (j > 0); j--){
-      promises.push(new Bot(j, link, name === true ? names[(Math.random() * names.length) | 0] : name, tribe, chat, ai, probe, autoHeal, randSkins).connect())
+      promises.push(new Bot(j, link, name === true ? names[(Math.random() * names.length) | 0] : name, tribe, chat, ai, probe, autoHeal, randSkins, hatID).connect())
     }
     Promise.all(promises).then(() => {
       connectBots(i - 8);
