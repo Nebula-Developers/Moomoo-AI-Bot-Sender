@@ -7,6 +7,8 @@
 // @match        *://moomoo.io/*
 // @match        *://45.77.0.81/*
 // @match        *://dev.moomoo.io/*
+// @homepage     https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Sender
+// @supportURL   https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Sender/issues
 // @grant        none
 // @run-at       document-start
 // ==/UserScript==
