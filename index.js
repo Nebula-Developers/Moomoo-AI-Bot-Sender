@@ -1032,7 +1032,7 @@ class Bot {
       "wood": 0,
       "stone": 0,
       "food": 0,
-      "gold": 0
+      "points": 0
     };
 		this.chatInterval = undefined;
 		this.reqint = undefined;
@@ -1317,9 +1317,9 @@ class Bot {
     this.socket.emit("5", 0, true);
   }
   tryHatOn(){
-    if (this.hatID && this.materials["gold"] > hats[this.hatID]) {
-      this.socket.emit("13", this.hatID, 1);
-      this.socket.emit("13", this.hatID, 0);
+    if (this.hatID && this.materials["points"] >= hats[this.hatID]) {
+      this.socket.emit("13", 1, this.hatID);
+      this.socket.emit("13", 0, this.hatID);
     }
   }
   chat(){
