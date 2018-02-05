@@ -1024,6 +1024,12 @@ class Bot {
       x: 0,
       y: 0
     };
+    this.materials = {
+      "wood": 0,
+      "stone": 0,
+      "food": 0,
+      "gold": 0
+    };
 		this.chatInterval = undefined;
 		this.reqint = undefined;
     this.updateInterval = undefined;
