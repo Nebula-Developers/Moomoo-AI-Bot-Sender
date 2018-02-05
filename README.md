@@ -158,3 +158,5 @@ Press R or click on the minimap to make a ping on the minimap, which makes the b
 !r: Releases the bots from control. Different from !s in that pressing R to ping will move them.
 
 !fm: Makes the bots follow your mouse. May be buggy if the robot.js lib didn't compile correctly.
+
+!hat \<hat ID>: Switches a bot's hat using the ID. If necessary, the requested hat will be bot.
