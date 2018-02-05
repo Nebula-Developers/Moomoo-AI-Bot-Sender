@@ -163,7 +163,7 @@ const names = [
   "Hunter"
 ];
 
-const hats = require("hats.json");
+const hats = require("./hats.json");
 
 const allServers = [
   {
