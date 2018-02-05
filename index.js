@@ -1268,7 +1268,13 @@ class Bot {
           attackFollowedPlayer = false;
           followMouse = true;
         } else if (command === "hat") {
-          this.tryHatOn(parseInt(args[0]));
+          let hatToEquip = parseInt(args[0]);
+
+          if (this.tryHatOn(hatToEquip)) {
+            this.chatMsg = "Switched hat.";
+          } else {
+            this.chatMsg = `Need ${hats[hatToEquip] - this.materials.points} more gold to equip hat.`;
+          }
         }
       });
       // ID (tribes[name, owner])
@@ -1322,7 +1328,7 @@ class Bot {
     if (id && this.materials["points"] >= hats[id]) {
       this.socket.emit("13", 1, id);
       this.socket.emit("13", 0, id);
-      
+
       return true;
     } else {
       return false;
