@@ -5,4 +5,4 @@ hatInfo.forEach(function(currentItem){
     hatPrices[currentItem.id] = currentItem.price;
 });
 
-copy(JSON.stringify(hatPrices, undefined, 4));
+console.log(JSON.stringify(hatPrices, undefined, 4));
