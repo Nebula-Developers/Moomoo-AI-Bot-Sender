@@ -1172,6 +1172,8 @@ class Bot {
       // Resource obtained
       sk.on("9", (type, amount) => {
         this.materials[type] = amount;
+
+        this.tryHatOn.bind(this);
       });
 
       // Damaged
@@ -1301,6 +1303,8 @@ class Bot {
   spawn(){
     this.socket && this.socket.emit("1", {name: this.name, moofoll: true, skin: this.randSkins ? Math.round(Math.random() * 5) : 0});
 		this.socket && this.socket.emit("7", 1);
+
+    this.tryHatOn();
   }
   join(){
     this.socket && this.tribe && this.socket.emit("10", this.tribe);
@@ -1309,6 +1313,12 @@ class Bot {
     this.socket.emit("5", 0, null);
     this.socket.emit("4", 1, null);
     this.socket.emit("5", 0, true);
+  }
+  tryHatOn(){
+    if (this.hatID && this.materials["gold"] > hats[this.hatID]) {
+      this.socket.emit("13", true, this.hatID);
+      this.socket.emit("13", false, this.hatID);
+    }
   }
   chat(){
     this.socket.emit("ch", this.chatMsg);
