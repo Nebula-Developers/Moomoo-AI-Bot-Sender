@@ -1273,7 +1273,7 @@ class Bot {
           if (this.tryHatOn(hatToEquip)) {
             this.chatMsg = "Switched hat.";
           } else {
-            this.chatMsg = `Need ${hats[hatToEquip] - this.materials.points} more gold to equip hat.`;
+            this.chatMsg = `Need ${hats[hatToEquip] - this.materials.points} more gold.`;
           }
         }
       });
