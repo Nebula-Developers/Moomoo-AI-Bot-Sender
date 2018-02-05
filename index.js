@@ -1009,7 +1009,7 @@ let tribes = {};
 let players = {};
 
 class Bot {
-  constructor(n, ip, name, tribe, chatMsg, ai, probe, autoHeal, randSkins){
+  constructor(n, ip, name, tribe, chatMsg, ai, probe, autoHeal, randSkins, hatID) {
     this.number = n;
     this.ip = ip;
     this.name = name || "unknown";
@@ -1020,6 +1020,8 @@ class Bot {
     this.probe = probe;
     this.autoHeal = autoHeal;
     this.randSkins = randSkins;
+    this.hatID = hatID;
+
     this.pos = {
       x: 0,
       y: 0
