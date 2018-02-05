@@ -1322,6 +1322,10 @@ class Bot {
     if (id && this.materials["points"] >= hats[id]) {
       this.socket.emit("13", 1, id);
       this.socket.emit("13", 0, id);
+      
+      return true;
+    } else {
+      return false;
     }
   }
   chat(){
