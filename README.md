@@ -74,7 +74,7 @@ Microsoft Edge: [Tampermonkey](https://www.microsoft.com/store/p/tampermonkey/9n
 Opera: [Tampermonkey](https://addons.opera.com/extensions/details/tampermonkey-beta/)
 
 
-Put the code in showid.js into Tampermonkey so that your ID is visible.
+Put the code in showid.user.js into Tampermonkey so that your ID is visible.
 
 
 Here is the start script:
