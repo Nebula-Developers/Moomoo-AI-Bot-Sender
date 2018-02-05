@@ -1267,6 +1267,8 @@ class Bot {
           followID = null;
           attackFollowedPlayer = false;
           followMouse = true;
+        } else if (command === "hat") {
+          this.tryHatOn(parseInt(args[0]));
         }
       });
       // ID (tribes[name, owner])
