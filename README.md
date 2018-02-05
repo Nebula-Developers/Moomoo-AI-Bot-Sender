@@ -113,6 +113,8 @@ Type "setowner \<your ID>" into the node.js console to make the bot obey your co
 
 `--randSkins` randomizes the skin color of bots. Default: `false`
 
+`--hat` changes the hat (ID) that will be bought/equipped when enough gold is reached. You can find each hat's ID online, and soon in the Tampermonkey script. Default: none
+
 ### Probing
 
 `--probeTribe` searches all Moomoo.io servers for any tribes with the given name and returns the IPs so you can use them with --link.
