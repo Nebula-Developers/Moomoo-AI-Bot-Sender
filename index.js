@@ -116,7 +116,11 @@ function getHatPrice(name) {
   if (typeof name === "number") {
     return data.hatPrices[name];
   } else {
-    return data.hatPrices[data.hatAliases[name.toLowerCase()]];
+    let safeName = name.toString().toLowerCase();
+    safeName = safeName.replace(/[$-/:-?{-~!"^_`\[\]]/g, ""); // remove symbols
+    safeName = safeName.replace(/\s/g, ""); // remove whitespace
+	  
+    return data.hatPrices[data.hatAliases[safeName]];
   };
 }
 
