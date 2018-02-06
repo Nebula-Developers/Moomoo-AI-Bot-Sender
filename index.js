@@ -110,6 +110,16 @@ function processInput(line){
   }
 }
 
+const data = require("./data.json");
+
+function getHatPrice(name) {
+  if (typeof name === "number") {
+    return data.hatPrices[name];
+  } else {
+    return data.hatPrices[data.hatAliases[name.toLowerCase()]];
+  };
+}
+
 const names = [
   "Wally",
   "Tanika",
@@ -162,8 +172,6 @@ const names = [
   "Jeraldine",
   "Hunter"
 ];
-
-const hats = require("./hats.json");
 
 const allServers = [
   {
@@ -1273,7 +1281,7 @@ class Bot {
           if (this.tryHatOn(hatToEquip)) {
             this.chatMsg = "Switched hat.";
           } else {
-            this.chatMsg = `Need ${hats[hatToEquip] - this.materials.points} more gold.`;
+            this.chatMsg = `Need ${getHatPrice(hatToEquip) - this.materials.points} more gold.`;
           }
         }
       });
@@ -1325,7 +1333,7 @@ class Bot {
     this.socket.emit("5", 0, true);
   }
   tryHatOn(id){
-    if (id && this.materials["points"] >= hats[id]) {
+    if (id && this.materials["points"] >= getHatPrice(id)) {
       this.socket.emit("13", 1, id);
       this.socket.emit("13", 0, id);
 
