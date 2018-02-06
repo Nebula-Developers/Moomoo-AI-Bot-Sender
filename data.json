@@ -67,8 +67,6 @@
         "musketeerhat": 32,
         "musketeer": 32,
         "bullhelmet": 7,
-        "bullhead": 7,
-        "bull": 7,
         "emphelmet": 22,
         "emp": 22
         "boosterhat": 12,
@@ -79,6 +77,8 @@
         "plaguemask": 21,
         "plague": 21
         "bullmask": 46,
+        "bullhead": 46,
+        "bull": 46,
         "windmillhat": 14,
         "windmill": 14,
         "spikegear": 11,
