@@ -68,14 +68,14 @@
         "musketeer": 32,
         "bullhelmet": 7,
         "emphelmet": 22,
-        "emp": 22
+        "emp": 22,
         "boosterhat": 12,
         "booster": 12,
         "speed": 12,
         "barbarianarmor": 26,
-        "barbarian": 26
+        "barbarian": 26,
         "plaguemask": 21,
-        "plague": 21
+        "plague": 21,
         "bullmask": 46,
         "bullhead": 46,
         "bull": 46,
@@ -89,7 +89,7 @@
         "bushido": 16,
         "scavengergear": 27,
         "scavenger": 27,
-        "tankgear": 40
+        "tankgear": 40,
         "tank": 40
     }
     "hatPrices": [
