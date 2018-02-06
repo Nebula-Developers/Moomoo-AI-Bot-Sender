@@ -119,7 +119,7 @@ function getHatPrice(name) {
     let safeName = name.toString().toLowerCase();
     safeName = safeName.replace(/[$-/:-?{-~!"^_`\[\]]/g, ""); // remove symbols
     safeName = safeName.replace(/\s/g, ""); // remove whitespace
-	  
+
     return data.hatPrices[data.hatAliases[safeName]];
   };
 }
@@ -1323,7 +1323,11 @@ class Bot {
 		this.socket.disconnect();
   }
   spawn(){
-    this.socket && this.socket.emit("1", {name: this.name, moofoll: true, skin: this.randSkins ? Math.round(Math.random() * 5) : 0});
+    this.socket && this.socket.emit("1", {
+      name: this.name,
+      moofoll: true,
+      skin: this.randSkins ? Math.round(Math.random() * 5) : 0
+    });
 		this.socket && this.socket.emit("7", 1);
 
     this.tryHatOn(this.hatID);
