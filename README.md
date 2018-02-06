@@ -113,7 +113,7 @@ Type "setowner \<your ID>" into the node.js console to make the bot obey your co
 
 `--randSkins` randomizes the skin color of bots. Default: `false`
 
-`--hat` changes the hat (ID) that will be bought/equipped when enough gold is reached. You can find each hat's ID online, and soon in the Tampermonkey script. Default: none
+`--hat` changes the hat via ID, name, or keyword, that will be bought/equipped when enough gold is reached. You can find each hat's ID online, and soon in the Tampermonkey script. Default: none
 
 ### Probing
 
@@ -159,4 +159,4 @@ Press R or click on the minimap to make a ping on the minimap, which makes the b
 
 !fm: Makes the bots follow your mouse. May be buggy if the robot.js lib didn't compile correctly.
 
-!hat \<hat ID>: Switches a bot's hat using the ID. If necessary, the requested hat will be bot.
+!hat \<hat ID>: Switches a bot's hat using the ID, name, or keyword. If necessary, the requested hat will be bot.
