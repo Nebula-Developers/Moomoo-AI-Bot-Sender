@@ -89,6 +89,8 @@
         "bushido": 16,
         "scavengergear": 27,
         "scavenger": 27,
+        "double": 27,
+        "doublepoints": 27,
         "tankgear": 40,
         "tank": 40
     },
