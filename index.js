@@ -1279,7 +1279,7 @@ class Bot {
           followID = null;
           attackFollowedPlayer = false;
           followMouse = true;
-        } else if (command === "hat") {
+        } else if (command === "hat" && args[0]) {
           let hatToEquip = args[0];
 
           if (this.tryHatOn(hatToEquip)) {
