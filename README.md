@@ -33,10 +33,9 @@ Download and install Python 2.7.x [here](https://www.python.org/downloads/releas
 
 Run the following commands in your console (Command Prompt/Powershell):
 
-  `npm config set python python2.7`
-
-  `npm config set msvs_version 2015`
-
+    npm config set python python2.7
+    npm config set msvs_version 2015
+  
 #### Mac OS X
 
 Download and install Python 2.7.x [here](https://www.python.org/downloads/release/python-2714/) if it isn't already installed.
@@ -53,7 +52,7 @@ Download and install GCC [here](https://gcc.gnu.org/).
 
 Run the following command in your console/terminal inside of the bot code's directory:
 
-  `npm install robotjs`
+    npm install robotjs
 
 ### Install the Bot Code (Required)
 
