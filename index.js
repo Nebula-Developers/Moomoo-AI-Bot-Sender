@@ -112,15 +112,15 @@ function processInput(line){
 
 const data = require("./data.json");
 
-function getHatPrice(name) {
+function getHatID(name) {
   if (typeof name === "number") {
-    return data.hatPrices[name];
+    return parseInt(name);
   } else {
     let safeName = name.toString().toLowerCase();
     safeName = safeName.replace(/[$-/:-?{-~!"^_`\[\]]/g, ""); // remove symbols
     safeName = safeName.replace(/\s/g, ""); // remove whitespace
 
-    return data.hatPrices[data.hatAliases[safeName]];
+    return data.hatAliases[safeName];
   };
 }
 
@@ -1280,12 +1280,12 @@ class Bot {
           attackFollowedPlayer = false;
           followMouse = true;
         } else if (command === "hat") {
-          let hatToEquip = parseInt(args[0]);
+          let hatToEquip = args[0];
 
           if (this.tryHatOn(hatToEquip)) {
             this.chatMsg = "Switched hat.";
           } else {
-            this.chatMsg = `Need ${getHatPrice(hatToEquip) - this.materials.points} more gold.`;
+            this.chatMsg = `Need ${data.hatPrices[getHatID(hatToEquip)] - this.materials.points} more gold.`;
           }
         }
       });
@@ -1343,9 +1343,9 @@ class Bot {
     this.socket.emit("5", 0, true);
   }
   tryHatOn(id){
-    if (id && this.materials["points"] >= getHatPrice(id)) {
-      this.socket.emit("13", 1, id);
-      this.socket.emit("13", 0, id);
+    if (id && getHatID(id) && this.materials["points"] >= data.hatPrices[getHatID(id)]) {
+      this.socket.emit("13", 1, getHatID(id));
+      this.socket.emit("13", 0, getHatID(id));
 
       return true;
     } else {
