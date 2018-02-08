@@ -1250,7 +1250,10 @@ class Bot {
           followID = null;
           attackFollowedPlayer = false;
           followMouse = true;
-        }
+        } else if (command === "atk"){
+	this.socket && this.socket.emit("7", !this.autoAttack);
+		this.autoAttack = !this.autoAttack;
+	}
       });
       // ID (tribes[name, owner])
       sk.on("id", (data) => {
