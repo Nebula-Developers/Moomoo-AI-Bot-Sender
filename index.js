@@ -24,7 +24,7 @@ try {
 
 const screen = computer && computer.getScreenSize();
 
-var args = parseFlags(process.argv.slice(2).join(" "), ["--num", "--link", "--tribe", "--name", "--randNames", "--randSkins", "--chat", "--ai", "--probeTribe", "--probeName", "--autoHeal"]);
+var args = parseFlags(process.argv.slice(2).join(" "), ["--num", "--link", "--tribe", "--name", "--randNames", "--randSkins", "--chat", "--ai", "--probeTribe", "--probeName", "--autoHeal", "--autoAttack"]);
 
 const httpServer = http.createServer((req, res) => {
   const args = url.parse(req.url, true).query;
@@ -1009,7 +1009,7 @@ let tribes = {};
 let players = {};
 
 class Bot {
-  constructor(n, ip, name, tribe, chatMsg, ai, probe, autoHeal, randSkins){
+  constructor(n, ip, name, tribe, chatMsg, ai, probe, autoHeal, randSkins, autoAttack){
     this.number = n;
     this.ip = ip;
     this.name = name || "unknown";
@@ -1019,6 +1019,7 @@ class Bot {
     this.ai = ai;
     this.probe = probe;
     this.autoHeal = autoHeal;
+    this.autoAttack = autoAttack;
     this.randSkins = randSkins;
     this.pos = {
       x: 0,
@@ -1286,7 +1287,8 @@ class Bot {
   }
   spawn(){  
     this.socket && this.socket.emit("1", {name: this.name, moofoll: true, skin: this.randSkins ? Math.round(Math.random() * 5) : 0});
-		this.socket && this.socket.emit("7", 1);
+		
+	  this.socket && this.socket.emit("7", this.autoAttack);
   }
   join(){
     this.socket && this.tribe && this.socket.emit("10", this.tribe);
@@ -1359,6 +1361,7 @@ var probeName = args.probeName && args.probeName.value;
 var probe = probeTribe || probeName;
 var autoHeal = !args.autoHeal || (args.autoHeal.value.toLowerCase() != "false" && args.autoHeal.value.toLowerCase() != "0");
 var randSkins = args.randSkins && args.randSkins.value.toLowerCase() != "false" && args.randSkins.value.toLowerCase() != "0";
+var autoAttack = !args.autoAttack || (args.autoAttack.value.toLowerCase() != "false" && args.autoAttack.value.toLowerCase() != "0");
 typeof name === "string" && (name = name.slice(0, 16));
 tribe && (tribe = tribe.slice(0, 6));
 chat && (chat = chat.slice(0, 30));
@@ -1369,7 +1372,7 @@ if (probe){
     if (i <= 0) return;
     var promises = [];
     for (var j = i; (j > i - 8) && (j > 0); j--){
-      promises.push(new Bot(j, allServers[j - 1].ip, "PROBE", tribe, chat, ai, probe, autoHeal, randSkins).connect())
+      promises.push(new Bot(j, allServers[j - 1].ip, "PROBE", tribe, chat, ai, probe, autoHeal, randSkins, autoAttack).connect())
     }
     Promise.all(promises).then(() => {
       connectBots(i - 8);
@@ -1380,7 +1383,7 @@ if (probe){
     if (i <= 0) return;
     var promises = [];
     for (var j = i; (j > i - 8) && (j > 0); j--){
-      promises.push(new Bot(j, link, name === true ? names[(Math.random() * names.length) | 0] : name, tribe, chat, ai, probe, autoHeal, randSkins).connect())
+      promises.push(new Bot(j, link, name === true ? names[(Math.random() * names.length) | 0] : name, tribe, chat, ai, probe, autoHeal, randSkins, autoAttack).connect())
     }
     Promise.all(promises).then(() => {
       connectBots(i - 8);
