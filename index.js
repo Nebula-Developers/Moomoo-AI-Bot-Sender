@@ -3,9 +3,7 @@ const request = require("request");
 const http = require("http");
 const url = require("url");
 const fs = require("fs");
-const {
-    spawn
-} = require("child_process");
+const {spawn} = require("child_process");
 
 if (!fs.existsSync(`${__dirname}/lastUpdated.txt`) || Date.now() - parseInt(fs.readFileSync(`${__dirname}/lastUpdated.txt`, "utf8")) > 43200000) {
     spawn("node", [`${__dirname}/autoupdate.js`], {
