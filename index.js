@@ -1323,12 +1323,10 @@ class Bot {
 		this.socket.disconnect();
   }
   spawn(){
-    let skinColor = this.randSkins ? Math.round(Math.random() * 5) : 0;
-
     this.socket && this.socket.emit("1", {
       name: this.name,
       moofoll: true,
-      skin: skinColor
+      skin: this.randSkins ? Math.round(Math.random() * 5) : 0
     });
 		this.socket && this.socket.emit("7", 1);
 
