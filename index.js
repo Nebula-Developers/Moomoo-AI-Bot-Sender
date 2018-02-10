@@ -16,10 +16,10 @@ if (!fs.existsSync(`${__dirname}/lastUpdated.txt`) || Date.now() - parseInt(fs.r
 var computer = null;
 
 try {
-	require.resolve("robotjs");
-	computer = require("robotjs");
+  require.resolve("robotjs");
+  computer = require("robotjs");
 }catch(e){
-	console.error("Robot.js was not installed correctly. Follow mouse function is disabled.");
+  console.error("Robot.js was not installed correctly. Follow mouse function is disabled.");
 }
 
 const screen = computer && computer.getScreenSize();
@@ -52,9 +52,9 @@ var mousePos = {x: 0, y: 0};
 var followMouse = false;
 var getMouseInputInterval = null;
 if (computer){
-	getMouseInputInterval = setInterval(() => {
-  	mousePos = computer.getMousePos();
-	}, 200);
+  getMouseInputInterval = setInterval(() => {
+    mousePos = computer.getMousePos();
+  }, 200);
 }
 
 function get(url){
@@ -72,25 +72,25 @@ function get(url){
 }
 
 function parseFlags(string, flags_array){
-	if (!Array.isArray(flags_array)){
-		return {error: "Array of flags not found."};
-	}
-	var return_object = {};
-	var flag_locations = [[-1, "null", []]];
-	var string_array = string.split(' ');
-	for (var i = 0; i < string_array.length; i++){
-		if (flags_array.indexOf(string_array[i]) > -1){
-			flag_locations.push([i, string_array[i], []]);
-		}else{
-			flag_locations[flag_locations.length - 1][2].push(string_array[i]);
-		}
-	}
-	for (var i = 0; i < flag_locations.length; i++){
-		return_object[flag_locations[i][1].replace(/^(-*)/g, '')] = {};
-		return_object[flag_locations[i][1].replace(/^(-*)/g, '')].flagLocation = flag_locations[i][0];
-		return_object[flag_locations[i][1].replace(/^(-*)/g, '')].value = flag_locations[i][2].join(' ');
-	}
-	return return_object;
+  if (!Array.isArray(flags_array)){
+    return {error: "Array of flags not found."};
+  }
+  var return_object = {};
+  var flag_locations = [[-1, "null", []]];
+  var string_array = string.split(' ');
+  for (var i = 0; i < string_array.length; i++){
+    if (flags_array.indexOf(string_array[i]) > -1){
+      flag_locations.push([i, string_array[i], []]);
+    }else{
+      flag_locations[flag_locations.length - 1][2].push(string_array[i]);
+    }
+  }
+  for (var i = 0; i < flag_locations.length; i++){
+    return_object[flag_locations[i][1].replace(/^(-*)/g, '')] = {};
+    return_object[flag_locations[i][1].replace(/^(-*)/g, '')].flagLocation = flag_locations[i][0];
+    return_object[flag_locations[i][1].replace(/^(-*)/g, '')].value = flag_locations[i][2].join(' ');
+  }
+  return return_object;
 }
 
 function getIP(link){
@@ -110,22 +110,21 @@ function processInput(line){
   }
 }
 
-const data = require("./data.json");
-
-// the former version of this function
-// is yet another reason why you
-// shouldn't code under the influence.
 function getHatID(name) {
-  if (typeof name === "string") {
+  const maybeAnInt = parseInt(name);
+  if (!isNaN(maybeAnInt)){
+    return maybeAnInt;
+  }else{
     let safeName = name.toString().toLowerCase();
     safeName = safeName.replace(/[$-/:-?{-~!"^_`\[\]]/g, ""); // remove symbols
     safeName = safeName.replace(/\s/g, ""); // remove whitespace
-
-    return data.hatAliases[safeName];
-  } else {
-    return name;
+    safeName = data.hatAliases[safeName];
+    if (!isNaN(safeName)) return safeName;
+    return null;
   }
 }
+
+const data = require("./data.json");
 
 const names = [
   "Wally",
@@ -1038,7 +1037,6 @@ class Bot {
     this.autoHeal = autoHeal;
     this.randSkins = randSkins;
     this.hatID = hatID;
-
     this.pos = {
       x: 0,
       y: 0
@@ -1049,16 +1047,16 @@ class Bot {
       "food": 0,
       "points": 0
     };
-		this.chatInterval = undefined;
-		this.reqint = undefined;
+    this.chatInterval = undefined;
+    this.reqint = undefined;
     this.updateInterval = undefined;
     this.key = null;
     this.id = null;
   }
   async connect(){
-	//try {
-	//	this.key = /(\\x26\\x6b\\x3d)([a-zA-Z0-9]+)\'}\)\;\}/.exec(await get(`http://${this.ip}:3000/bundle.js`))[2];
-	//}catch(e){}
+    //try {
+    //	this.key = /(\\x26\\x6b\\x3d)([a-zA-Z0-9]+)\'}\)\;\}/.exec(await get(`http://${this.ip}:3000/bundle.js`))[2];
+    //}catch(e){}
     var sk = this.socket = io.connect(`http://${this.ip}:${5000 + (this.number % 11)}`, {
       reconnection: false,
       query: `man=1`, // &k=${this.key || "none"}
@@ -1075,19 +1073,19 @@ class Bot {
       sk.once("disconnect", () => {
         bots.splice(bots.indexOf(this), 1);
         this.socket.removeAllListeners();
-  			this.socket = null;
+        this.socket = null;
         if (bots.length === 0){
           console.log("Probe finished.");
           process.exit();
         }
-  		});
+      });
       sk.once("connect", () => {
         bots.push(this);
         this.spawn();
-  		});
+      });
       // Spawn (id)
       sk.on("1", r => {
-  			this.id = r;
+        this.id = r;
         setTimeout(this.socket.disconnect.bind(this.socket), 5000);
       });
       // Leaderboard
@@ -1111,25 +1109,25 @@ class Bot {
       sk.once("disconnect", () => {
         bots.splice(bots.indexOf(this), 1);
         console.log(`${this.number} disconnected`);
-  			clearInterval(this.chatInterval);
+        clearInterval(this.chatInterval);
         clearInterval(this.reqint);
         clearInterval(this.updateInterval);
-  			setTimeout(this.connect.bind(this), 2000);
+        setTimeout(this.connect.bind(this), 2000);
         this.socket.removeAllListeners();
-  			this.socket = null;
-  		});
-  		sk.once("connect", () => {
+        this.socket = null;
+      });
+      sk.once("connect", () => {
         console.log(`${this.number} connected`);
         bots.push(this);
         this.spawn();
-  		});
+      });
       // Spawn (id)
       sk.on("1", r => {
         console.log(`${this.number} spawned`);
-  			this.id = r;
-  			this.tribe && sk.emit("8", this.tribe);
+        this.id = r;
+        this.tribe && sk.emit("8", this.tribe);
         if (this.chatMsg) this.chatInterval = setInterval(this.chat.bind(this), 3000);
-  			this.tribe && (this.reqint = setInterval(this.join.bind(this), 5000));
+        this.tribe && (this.reqint = setInterval(this.join.bind(this), 5000));
         if (this.ai) this.updateInterval = setInterval(this.update.bind(this), 1000);
       });
       // Player Add ([l_id, id, name, x, y, angle, ?, ?, ?, ?], main)
@@ -1185,20 +1183,17 @@ class Bot {
           }
         }
       });
-
       // Resource obtained
       sk.on("9", (type, amount) => {
         this.materials[type] = amount;
-
         this.tryHatOn(this.hatID);
       });
-
       // Damaged
       if (this.autoHeal){
 	sk.on("10", (id, health) => {
-		if (id == this.id && health < 100) {
-			setTimeout(this.heal.bind(this), 75 + (Math.random() / 10) | 0);
-		}
+          if (id == this.id && health < 100) {
+            setTimeout(this.heal.bind(this), 75 + (Math.random() / 10) | 0);
+          }
 	});
       }
       // Death
@@ -1207,8 +1202,8 @@ class Bot {
         clearInterval(this.chatInterval);
         clearInterval(this.reqint);
         clearInterval(this.updateInterval);
-  			setTimeout(this.spawn.bind(this), 20);
-  		});
+        setTimeout(this.spawn.bind(this), 20);
+      });
       // Tribe Delete (name)
       sk.on("ad", (name) => {
         if (this === bots[0]){
@@ -1282,14 +1277,15 @@ class Bot {
           followID = null;
           attackFollowedPlayer = false;
           followMouse = true;
-        } else if (command === "hat" && args[0]) {
+        }else if (command === "hat" && args[0]){
           let hatToEquip = args[0];
-
-          if (this.tryHatOn(hatToEquip)) {
+          if (this.tryHatOn(hatToEquip)){
             this.chatMsg = "Switched hat.";
-          } else {
+          }else{
             this.chatMsg = `Need ${data.hatPrices[getHatID(hatToEquip)] - this.materials.points} more gold.`;
           }
+          clearInterval(this.chatInterval);
+          setTimeout(this.chat.bind(this), 1000);
         }
       });
       // ID (tribes[name, owner])
@@ -1323,7 +1319,7 @@ class Bot {
     }
   }
   disconnect(){
-		this.socket.disconnect();
+    this.socket.disconnect();
   }
   spawn(){
     this.socket && this.socket.emit("1", {
@@ -1331,8 +1327,7 @@ class Bot {
       moofoll: true,
       skin: this.randSkins ? Math.round(Math.random() * 5) : 0
     });
-		this.socket && this.socket.emit("7", 1);
-
+    this.socket && this.socket.emit("7", 1);
     this.tryHatOn(this.hatID);
   }
   join(){
@@ -1344,12 +1339,13 @@ class Bot {
     this.socket.emit("5", 0, true);
   }
   tryHatOn(id){
-    if (id && getHatID(id) && this.materials["points"] >= data.hatPrices[getHatID(id)]) {
-      this.socket.emit("13", 1, getHatID(id));
-      this.socket.emit("13", 0, getHatID(id));
-
+    id = getHatID(id);
+    if (!isNaN(id) && !isNaN(data.hatPrices[id]) && this.materials.points >= data.hatPrices[id]){
+      this.socket.emit("13", 1, id);
+      this.socket.emit("13", 0, id);
       return true;
-    } else {
+    }else{
+      this.socket.emit("13", 0, id);
       return false;
     }
   }
@@ -1388,7 +1384,10 @@ class Bot {
             this.socket.emit(2, Math.atan2(p.y - this.pos.y, p.x - this.pos.x));
             this.socket.emit(3, Math.atan2(p.y - this.pos.y, p.x - this.pos.x));
           }
-        }
+        }else{
+          this.socket.emit(2, Math.atan2(p.y - this.pos.y, p.x - this.pos.x));
+          this.socket.emit(3, Math.atan2(p.y - this.pos.y, p.x - this.pos.x));
+	}
       }
     }else if (goto.x && goto.y){
       if (Math.pow(this.pos.x - goto.x, 2) + Math.pow(this.pos.y - goto.y, 2) < 40000){
@@ -1416,7 +1415,7 @@ var probeName = args.probeName && args.probeName.value;
 var probe = probeTribe || probeName;
 var autoHeal = !args.autoHeal || (args.autoHeal.value.toLowerCase() != "false" && args.autoHeal.value.toLowerCase() != "0");
 var randSkins = args.randSkins && args.randSkins.value.toLowerCase() != "false" && args.randSkins.value.toLowerCase() != "0";
-var hatID = ((args.hat && parseInt(args.hat.value)) || (args.hat && args.hat.value)) || undefined;
+var hatID = (args.hat && args.hat.value) || null;
 typeof name === "string" && (name = name.slice(0, 16));
 tribe && (tribe = tribe.slice(0, 6));
 chat && (chat = chat.slice(0, 30));
