@@ -1454,8 +1454,8 @@ if (probe){
 
 process.stdin.setEncoding("utf8");
 process.stdin.on("data", data => {
-    data.split(/[\r\n]+/).forEach(l => {
-        processInput(l.trim());
-    });
+  data.split(/[\r\n]+/).forEach(l => {
+    processInput(l.trim());
+  });
 });
 process.stdin.resume();
