@@ -1,3 +1,7 @@
+February 9, 2018 (1.4.2):
+  + UPDATE YOUR TAMPERMONKEY SCRIPT!!!
+  + This updated Tampermonkey script should have less conflicts with other scripts
+
 February 9, 2018 (1.4.1):
   + Fixed an error when no hat is used
 
