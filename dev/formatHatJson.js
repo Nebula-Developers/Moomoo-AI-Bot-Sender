@@ -13,7 +13,5 @@ hatInfo.forEach(function(currentItem){
     hatPrices[currentItem.id] = currentItem.price;
 });
 
-// const fs = require("fs");
 const output = JSON.stringify(hatPrices, undefined, 4);
-console.log(output);
-//fs.writeFile("hats.json", output, "utf8");
+require("fs").writeFileSync("hats.json", output, "utf8");
