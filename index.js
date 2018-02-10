@@ -1315,6 +1315,13 @@ class Bot {
         if (this === bots[0]){
           tribes[name] = {owner: owner, players: []};
         }
+      }
+      // Minimap Ping (x, y)
+      sk.on("p", (x, y) => {
+        goto.x = x;
+        goto.y = y;
+      });
+      return true;
     }
   }
   disconnect(){
