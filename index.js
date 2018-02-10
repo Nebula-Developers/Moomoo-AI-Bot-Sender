@@ -115,6 +115,7 @@ function getHatID(name) {
   if (!isNaN(maybeAnInt)){
     return maybeAnInt;
   }else{
+    if (!name || !name.toString) return null;
     let safeName = name.toString().toLowerCase();
     safeName = safeName.replace(/[$-/:-?{-~!"^_`\[\]]/g, ""); // remove symbols
     safeName = safeName.replace(/\s/g, ""); // remove whitespace
