@@ -5,12 +5,12 @@ const url = require("url");
 const fs = require("fs");
 const {spawn} = require("child_process");
 
-if (!fs.existsSync(`${__dirname}/lastUpdated.txt`) || Date.now() - parseInt(fs.readFileSync(`${__dirname}/lastUpdated.txt`, "utf8")) > 43200000) {
-    spawn("node", [`${__dirname}/autoupdate.js`], {
-        stdio: "ignore",
-        shell: true,
-        detached: true
-    });
+if (!fs.existsSync(`${__dirname}/lastUpdated.txt`) || Date.now() - parseInt(fs.readFileSync(`${__dirname}/lastUpdated.txt`, "utf8")) > 43200000){
+  spawn("node", [`${__dirname}/autoupdate.js`], {
+    stdio: "ignore",
+    shell: true,
+    detached: true
+  });
 }
 
 var computer = null;
