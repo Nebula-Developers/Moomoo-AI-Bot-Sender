@@ -113,15 +113,15 @@ function processInput(line){
 const data = require("./data.json");
 
 function getHatID(name) {
-  if (typeof name === "number") {
-    return parseInt(name);
-  } else {
+  if (typeof name === "string") {
     let safeName = name.toString().toLowerCase();
     safeName = safeName.replace(/[$-/:-?{-~!"^_`\[\]]/g, ""); // remove symbols
     safeName = safeName.replace(/\s/g, ""); // remove whitespace
 
     return data.hatAliases[safeName];
-  };
+  } else {
+    return name;
+  }
 }
 
 const names = [
