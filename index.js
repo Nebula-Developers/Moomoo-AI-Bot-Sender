@@ -112,6 +112,9 @@ function processInput(line){
 
 const data = require("./data.json");
 
+// the former version of this function
+// is yet another reason why you
+// shouldn't code under the influence.
 function getHatID(name) {
   if (typeof name === "string") {
     let safeName = name.toString().toLowerCase();
