@@ -1,3 +1,8 @@
+February 5, 2018 (1.4.0)
+  + Bots can now buy and equip a hat (when a bot reaches enough gold to do so) using --hat <hat ID or hat name>
+  + A new command, !hat, to make a bot attempt to buy/equip a hat
+  + Fixed !atkid
+
 January 31, 2018 (1.3.1)
   + Fixed a critical bug that crashed the code (I think)
 

@@ -59,7 +59,7 @@ Run the following command in your console/terminal inside of the bot code's dire
 After Node.js is installed, run the below command in your console inside this folder. It is required to install important code the script depends on to run, and you can do that easily with the following command:
 
     npm install
-    
+
 Or you can run `npminstall.bat` if you are on Windows and you have no clue how to get to a console.
 
 Install a userscript manager:
@@ -81,7 +81,7 @@ Put the code in showid.user.js into Tampermonkey so that your ID is visible.
 Here is the start script:
 
     node index.js [--probeTribe tribeName] [--probeName playerName] [--num numberOfBots] [--link moomooPartyLink] [--tribe tribeName] [--name botName] [--randNames true] [--chat chatMessage] [--ai true] [--autoHeal true] [--randSkins true]
-    
+
 See the next section for information on everything after `node index.js`.
 
 ## Configuration
@@ -112,6 +112,8 @@ Type "setowner \<your ID>" into the node.js console to make the bot obey your co
 
 `--randSkins` randomizes the skin color of bots. Default: `false`
 
+`--hat` changes the hat via ID, name, or keyword, that will be bought/equipped when enough gold is reached. You can find each hat's ID online, and soon in the Tampermonkey script. Default: none
+
 ### Probing
 
 `--probeTribe` searches all Moomoo.io servers for any tribes with the given name and returns the IPs so you can use them with --link.
@@ -123,13 +125,13 @@ You can probe (search) for a name on the leaderboard or a tribe on all the publi
 Here is the start script for probing using a tribe name:
 
     node index.js --probeTribe Nebula
-    
+
 This will return a list of server IPs which have the tribe `Nebula` in them.
 
 Here is the start script for probing using a name on the leaderboard:
 
     node index.js --probeName Lucario
-    
+
 Similar to the other command, this will return a list of server IPs which have the player `Lucario` on the leaderboard.
 
 You can put both the outputs into `--link` for the botting start script.
@@ -143,15 +145,17 @@ Type `setowner <your ID>` into the Node.js console to make the bot obey your ing
 Press R or click on the minimap to make a ping on the minimap, which makes the bots come to that pinged location.
 
 !id \<player name>: Makes the bots send the ID of a player in chat.
-  
+
 !fme: Makes the bots follow you.
 
 !fid \<player ID>: Makes the bots follow the player with that ID.
-  
+
 !atkid \<player ID>: Makes the bots attack the player with that ID. [BUGGY]
-  
+
 !s: Makes the bots stay.
 
 !r: Releases the bots from control. Different from !s in that pressing R to ping will move them.
 
 !fm: Makes the bots follow your mouse. May be buggy if the robot.js lib didn't compile correctly.
+
+!hat \<hat ID>: Switches a bot's hat using the ID, name, or keyword. If necessary, the requested hat will be bot.

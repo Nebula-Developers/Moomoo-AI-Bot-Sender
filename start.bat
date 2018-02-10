@@ -47,6 +47,7 @@ set /p chatmsg="Bot Chat Message: "
 set /p ai="AI? (Y/N): "
 set /p autoheal="Autoheal? (Y/N): "
 set /p randskins="Random Skins? (Y/N): "
+set /p hat="Hat ID: "
 cls
 if /I %ai%==Y set ai="true" & goto checkautoheal
 set ai="false"
@@ -57,4 +58,4 @@ set autoheal="true"
 if /I %randskins%==Y set randskins="true" & goto exec
 set randskins="false"
 :exec
-node index.js --num %numbots% --link %partylink% --tribe %tribename% --name %botnick% --chat %chatmsg% --ai %ai% --autoHeal %autoheal% --randSkins %randskins%
+node index.js --num %numbots% --link %partylink% --tribe %tribename% --name %botnick% --chat %chatmsg% --ai %ai% --autoHeal %autoheal% --randSkins %randskins% --hat %hat%
