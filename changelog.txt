@@ -1,3 +1,13 @@
+February 9, 2018 (1.5.0)
+  + Added --autoAttack for easier farming
+  + Added !atk to toggle auto attack
+  + Since I pushed 4 updates in an hour, here's a summary of the new changes:
+    * !atkid is now fixed
+    * !hat <hat name> will make your bots buy and equip that hat if it has enough gold
+    * --hat <hat name> automatically buys and equips it
+    * Tampermonkey script was updated to decrease conflict with other scripts
+      - Update it if you use auto-heal or any other scripts
+
 February 9, 2018 (1.4.2):
   + UPDATE YOUR TAMPERMONKEY SCRIPT!!!
   + This updated Tampermonkey script should have less conflicts with other scripts

@@ -114,6 +114,8 @@ Type "setowner \<your ID>" into the node.js console to make the bot obey your co
 
 `--hat` changes the hat via ID, name, or keyword, that will be bought/equipped when enough gold is reached. You can find each hat's ID online, and soon in the Tampermonkey script. Default: none
 
+`--autoAttack` enables auto attack (as if they pressed E). Default: `true`
+
 ### Probing
 
 `--probeTribe` searches all Moomoo.io servers for any tribes with the given name and returns the IPs so you can use them with --link.
@@ -159,3 +161,5 @@ Press R or click on the minimap to make a ping on the minimap, which makes the b
 !fm: Makes the bots follow your mouse. May be buggy if the robot.js lib didn't compile correctly.
 
 !hat \<hat ID>: Switches a bot's hat using the ID, name, or keyword. If necessary, the requested hat will be bot.
+
+!atk: Toggles auto attack, as if the bots pressed E.

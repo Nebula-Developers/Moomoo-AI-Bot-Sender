@@ -24,7 +24,7 @@ try {
 
 const screen = computer && computer.getScreenSize();
 
-var args = parseFlags(process.argv.slice(2).join(" "), ["--num", "--link", "--tribe", "--name", "--randNames", "--randSkins", "--chat", "--ai", "--probeTribe", "--probeName", "--autoHeal", "--hat"]);
+var args = parseFlags(process.argv.slice(2).join(" "), ["--num", "--link", "--tribe", "--name", "--randNames", "--randSkins", "--chat", "--ai", "--probeTribe", "--probeName", "--autoHeal", "--hat", "--autoAttack"]);
 
 const httpServer = http.createServer((req, res) => {
   const args = url.parse(req.url, true).query;
@@ -110,7 +110,7 @@ function processInput(line){
   }
 }
 
-function getHatID(name) {
+function getHatID(name){
   const maybeAnInt = parseInt(name);
   if (!isNaN(maybeAnInt)){
     return maybeAnInt;
@@ -1026,7 +1026,7 @@ let tribes = {};
 let players = {};
 
 class Bot {
-  constructor(n, ip, name, tribe, chatMsg, ai, probe, autoHeal, randSkins, hatID) {
+  constructor(n, ip, name, tribe, chatMsg, ai, probe, autoHeal, randSkins, hatID, autoAttack) {
     this.number = n;
     this.ip = ip;
     this.name = name || "unknown";
@@ -1038,6 +1038,7 @@ class Bot {
     this.autoHeal = autoHeal;
     this.randSkins = randSkins;
     this.hatID = hatID;
+    this.autoAttack = autoAttack;
     this.pos = {
       x: 0,
       y: 0
@@ -1287,6 +1288,9 @@ class Bot {
           }
           clearInterval(this.chatInterval);
           setTimeout(this.chat.bind(this), 1000);
+        }else if (command === "atk"){
+          this.autoAttack = !this.autoAttack;
+          this.socket && this.socket.emit("7", this.autoAttack);
         }
       });
       // ID (tribes[name, owner])
@@ -1312,6 +1316,7 @@ class Bot {
           tribes[name] = {owner: owner, players: []};
         }
       });
+      // Minimap Ping (x, y)
       sk.on("p", (x, y) => {
         goto.x = x;
         goto.y = y;
@@ -1328,7 +1333,7 @@ class Bot {
       moofoll: true,
       skin: this.randSkins ? Math.round(Math.random() * 5) : 0
     });
-    this.socket && this.socket.emit("7", 1);
+    this.socket && this.socket.emit("7", this.autoAttack);
     this.tryHatOn(this.hatID);
   }
   join(){
@@ -1388,7 +1393,7 @@ class Bot {
         }else{
           this.socket.emit(2, Math.atan2(p.y - this.pos.y, p.x - this.pos.x));
           this.socket.emit(3, Math.atan2(p.y - this.pos.y, p.x - this.pos.x));
-	}
+        }
       }
     }else if (goto.x && goto.y){
       if (Math.pow(this.pos.x - goto.x, 2) + Math.pow(this.pos.y - goto.y, 2) < 40000){
@@ -1417,6 +1422,7 @@ var probe = probeTribe || probeName;
 var autoHeal = !args.autoHeal || (args.autoHeal.value.toLowerCase() != "false" && args.autoHeal.value.toLowerCase() != "0");
 var randSkins = args.randSkins && args.randSkins.value.toLowerCase() != "false" && args.randSkins.value.toLowerCase() != "0";
 var hatID = (args.hat && args.hat.value) || null;
+var autoAttack = !args.autoAttack || (args.autoAttack.value.toLowerCase() != "false" && args.autoAttack.value.toLowerCase() != "0");
 typeof name === "string" && (name = name.slice(0, 16));
 tribe && (tribe = tribe.slice(0, 6));
 chat && (chat = chat.slice(0, 30));
@@ -1427,7 +1433,7 @@ if (probe){
     if (i <= 0) return;
     var promises = [];
     for (var j = i; (j > i - 8) && (j > 0); j--){
-      promises.push(new Bot(j, allServers[j - 1].ip, "PROBE", tribe, chat, ai, probe, autoHeal, randSkins, hatID).connect())
+      promises.push(new Bot(j, allServers[j - 1].ip, "PROBE", tribe, chat, ai, probe, autoHeal, randSkins, hatID, autoAttack).connect())
     }
     Promise.all(promises).then(() => {
       connectBots(i - 8);
@@ -1438,7 +1444,7 @@ if (probe){
     if (i <= 0) return;
     var promises = [];
     for (var j = i; (j > i - 8) && (j > 0); j--){
-      promises.push(new Bot(j, link, name === true ? names[(Math.random() * names.length) | 0] : name, tribe, chat, ai, probe, autoHeal, randSkins, hatID).connect())
+      promises.push(new Bot(j, link, name === true ? names[(Math.random() * names.length) | 0] : name, tribe, chat, ai, probe, autoHeal, randSkins, hatID, autoAttack).connect())
     }
     Promise.all(promises).then(() => {
       connectBots(i - 8);
