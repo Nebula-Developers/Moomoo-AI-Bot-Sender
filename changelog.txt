@@ -1,4 +1,13 @@
-February 9, 2018 (1.5.0)
+February 12, 2018 (1.6.0):
+  + NEW NEBULA SERVER!!!: https://discord.gg/Dvqy2A8
+  + Follow mouse now automatically disables after respawning to allow pinging bots
+  + Fixed some bugs with !hat
+  + !sp to spawn spikes
+  + !w to spawn walls
+  + !atkid now spreads bots out if the last player update is >30 seconds ago
+  + Version 2 coming soon!
+
+February 9, 2018 (1.5.0):
   + Added --autoAttack for easier farming
   + Added !atk to toggle auto attack
   + Since I pushed 4 updates in an hour, here's a summary of the new changes:
