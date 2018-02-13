@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Moomoo Bot Utilities
 // @namespace    https://discord.gg/Uj3GWPy
-// @version      1.2.0
+// @version      1.3.0
 // @description  Shows your internal ID and position.
 // @author       Mega_Mewthree
 // @match        *://moomoo.io/*
@@ -23,6 +23,22 @@
             this.addEventListener('message', function(e){
                 handleMessage(e);
             });
+            this._send = this.send;
+            this.send = function (){
+                if (arguments[0].startsWith("42")){
+                    try {
+                        const sent = JSON.parse(arguments[0].replace("42", ""));
+                        if (sent[0] === "1"){
+                            const req = new XMLHttpRequest();
+                            req.open("POST", `http://localhost:15729/?spawned=true`, true);
+                            req.send();
+                        }
+                    }catch (e){
+                        console.error(e);
+                    }
+                }
+                this._send.apply(this, arguments);
+            };
         }
     };
 
