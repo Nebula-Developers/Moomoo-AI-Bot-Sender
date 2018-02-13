@@ -32,6 +32,14 @@ const httpServer = http.createServer((req, res) => {
     ownerID = args.ownerID;
     console.log(`Set owner ID to ${args.ownerID}`);
   }
+  if (args.spawned && followMouse){
+    goto.x = goto.y = null;
+    stay = false;
+    followID = null;
+    attackFollowedPlayer = false;
+    followMouse = false;
+    console.log(`Stopped following mouse due to owner spawn`);
+  }
   res.writeHead(204);
   res.end();
 });
@@ -1039,6 +1047,7 @@ class Bot {
     this.randSkins = randSkins;
     this.hatID = hatID;
     this.autoAttack = autoAttack;
+    this.lastRandAngleUpdate = 0;
     this.pos = {
       x: 0,
       y: 0
@@ -1192,11 +1201,11 @@ class Bot {
       });
       // Damaged
       if (this.autoHeal){
-	sk.on("10", (id, health) => {
+        sk.on("10", (id, health) => {
           if (id == this.id && health < 100) {
             setTimeout(this.heal.bind(this), 75 + (Math.random() / 10) | 0);
           }
-	});
+        });
       }
       // Death
       sk.on("11", () => {
@@ -1248,6 +1257,7 @@ class Bot {
             this.chatMsg = "Player not in memory.";
           }
           clearInterval(this.chatInterval);
+          this.chatInterval = null;
           setTimeout(this.chat.bind(this), 1000);
         }else if (command === "fid"){
           goto.x = goto.y = null;
@@ -1281,16 +1291,35 @@ class Bot {
           followMouse = true;
         }else if (command === "hat" && args[0]){
           let hatToEquip = args[0];
-          if (this.tryHatOn(hatToEquip)){
-            this.chatMsg = "Switched hat.";
-          }else{
-            this.chatMsg = `Need ${data.hatPrices[getHatID(hatToEquip)] - this.materials.points} more gold.`;
+          let len = bots.length;
+          let bot, triedHat;
+          while (len--){
+            bot = bots[len];
+            triedHat = bot.tryHatOn(hatToEquip);
+            if (triedHat){
+              bot.chatMsg = "Switched hat.";
+            }else if (triedHat === false){
+              bot.chatMsg = `Need ${data.hatPrices[getHatID(hatToEquip)] - bot.materials.points} more gold.`;
+            }else{
+              bot.chatMsg = `Invalid hat!`
+            }
+            clearInterval(bot.chatInterval);
+            bot.chatInterval = null;
+            setTimeout(bot.chat.bind(bot), 1000);
           }
-          clearInterval(this.chatInterval);
-          setTimeout(this.chat.bind(this), 1000);
         }else if (command === "atk"){
           this.autoAttack = !this.autoAttack;
           this.socket && this.socket.emit("7", this.autoAttack);
+        }else if (command === "sp"){
+          this.socket.emit("5", 5, null);
+          this.socket.emit("4", 1, null);
+          this.socket.emit("4", 0, null);
+          this.socket.emit("5", 1, null);
+        }else if (command === "w"){
+          this.socket.emit("5", 2, null);
+          this.socket.emit("4", 1, null);
+          this.socket.emit("4", 0, null);
+          this.socket.emit("5", 1, null);
         }
       });
       // ID (tribes[name, owner])
@@ -1346,13 +1375,17 @@ class Bot {
   }
   tryHatOn(id){
     id = getHatID(id);
-    if (!isNaN(id) && !isNaN(data.hatPrices[id]) && this.materials.points >= data.hatPrices[id]){
-      this.socket.emit("13", 1, id);
-      this.socket.emit("13", 0, id);
-      return true;
-    }else{
-      this.socket.emit("13", 0, id);
-      return false;
+    if (isNaN(id)) return null;
+    if (!isNaN(data.hatPrices[id])){
+      this.hatID = id;
+      if (this.materials.points >= data.hatPrices[id]){
+        this.socket.emit("13", 1, id);
+        this.socket.emit("13", 0, id);
+        return true;
+      }else{
+        this.socket.emit("13", 0, id);
+        return false;
+      }
     }
   }
   chat(){
@@ -1382,19 +1415,27 @@ class Bot {
     }else if (followID && players[followID]){
       const p = players[followID];
       if (p && p.x){
-        if (!attackFollowedPlayer){
-          if (Math.pow(this.pos.x - p.x, 2) + Math.pow(this.pos.y - p.y, 2) < 20000){
-            this.socket.emit(2, p.angle);
-            this.socket.emit(3, null);
+        const now = Date.now();
+        if (now - p.lastUpdated > 30000 && now - this.lastRandAngleUpdate > 20000){
+          this.lastRandAngleUpdate = now;
+          const randAngle = Math.random() * Math.PI * 2;
+          this.socket.emit(2, randAngle);
+          this.socket.emit(3, randAngle);
+        }else{
+          if (!attackFollowedPlayer){
+            if (Math.pow(this.pos.x - p.x, 2) + Math.pow(this.pos.y - p.y, 2) < 20000){
+              this.socket.emit(2, p.angle);
+              this.socket.emit(3, null);
+            }else{
+              this.socket.emit(2, Math.atan2(p.y - this.pos.y, p.x - this.pos.x));
+              this.socket.emit(3, Math.atan2(p.y - this.pos.y, p.x - this.pos.x));
+            }
           }else{
             this.socket.emit(2, Math.atan2(p.y - this.pos.y, p.x - this.pos.x));
             this.socket.emit(3, Math.atan2(p.y - this.pos.y, p.x - this.pos.x));
           }
-        }else{
-          this.socket.emit(2, Math.atan2(p.y - this.pos.y, p.x - this.pos.x));
-          this.socket.emit(3, Math.atan2(p.y - this.pos.y, p.x - this.pos.x));
         }
-      }
+        }
     }else if (goto.x && goto.y){
       if (Math.pow(this.pos.x - goto.x, 2) + Math.pow(this.pos.y - goto.y, 2) < 40000){
         this.socket.emit(2, 0);
