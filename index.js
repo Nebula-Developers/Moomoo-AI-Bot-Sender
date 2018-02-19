@@ -1218,7 +1218,7 @@ class Bot {
       // Tribe Delete (name)
       sk.on("ad", (name) => {
         if (this === bots[0]){
-          if (tribes[name]) delete tribe[name];
+          if (tribes[name]) delete tribes[name];
         }
       });
       // Tribe add request ({sid, owner})
