@@ -1,9 +1,4 @@
 {
-    "header": [
-        "      If you're here and you're      ",
-        "    not a developer of these bots,   ",
-        "      you're in the wrong place.     "
-    ],
     "hatAliases": {
         "shame": 45,
         "joker": 45,
