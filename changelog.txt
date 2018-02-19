@@ -1,3 +1,6 @@
+February 19, 2018 (1.6.1):
+  + Fixed a typo that crashes the program whenever a tribe is deleted
+
 February 12, 2018 (1.6.0):
   + NEW NEBULA SERVER!!!: https://discord.gg/Dvqy2A8
   + Follow mouse now automatically disables after respawning to allow pinging bots
