@@ -11,14 +11,15 @@
   "dependencies": {
     "auto-updater": "^1.0.2",
     "request": "^2.83.0",
-    "socket.io": "^2.0.4"
+    "socket.io": "^2.0.4",
+    "socket.io-msgpack-parser": "^2.2.0"
   },
   "optionalDependencies": {
     "robotjs": "^0.4.7"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Sender.git"
+    "type": "git",
+    "url": "https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Sender.git"
   },
   "bugs": "https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Sender/issues",
   "engines": {
