@@ -1,3 +1,8 @@
+February 23, 2018 (1.7.0):
+  + Updated code to use ArrayBuffers
+  + The first time you run this, "npm install" will be automatically run
+  + "npm install" will be run automatically after any future updates
+
 February 19, 2018 (1.6.1):
   + Fixed a typo that crashes the program whenever a tribe is deleted
 
