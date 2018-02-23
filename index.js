@@ -4,13 +4,26 @@ const http = require("http");
 const url = require("url");
 const fs = require("fs");
 const { spawn } = require("child_process");
-const parser = require("socket.io-msgpack-parser");
+
+let parser = null;
+try {
+	require.resolve("socket.io-msgpack-parser");
+	parser = require("socket.io-msgpack-parser");
+}catch(e) {
+	console.error("Socket.io Msgpack Parser was not installed. Exiting and installing...");
+	spawn("npm", ["install"], {
+		stdio: "ignore",
+		shell: true,
+		detached: true
+	});
+	process.exit();
+}
 
 if (!fs.existsSync(`${__dirname}/lastUpdated.txt`) || Date.now() - parseInt(fs.readFileSync(`${__dirname}/lastUpdated.txt`, "utf8")) > 43200000) {
 	spawn("node", [`${__dirname}/autoupdate.js`], {
 		stdio: "ignore",
 		shell: true,
-		detached: true,
+		detached: true
 	});
 }
 
