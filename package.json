@@ -28,5 +28,8 @@
   "auto-updater": {
     "repo": "Mega-Mewthree/Moomoo-AI-Bot-Sender",
     "branch": "master"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.1"
   }
 }
