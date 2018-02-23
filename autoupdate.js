@@ -70,6 +70,11 @@ autoupdater.on("update.not-installed", function (){
 });
 autoupdater.on("update.extracted", function (){
   console.log("Update installed successfully!");
+  console.log("Running npm install...");
+  require("child_process").spawnSync("npm", ["install"], {
+		stdio: "inherit"
+	});
+  console.log("npm install finished");
   console.log("Check showid.js for any changes and update your Tampermonkey script as necessary");
   console.log("Changes will be stored in changelog.txt.")
   console.log("Please restart the app for changes to take effect!");
