@@ -25,7 +25,7 @@ try {
 
 const screen = computer && computer.getScreenSize();
 
-let args = parseFlags(process.argv.slice(2).join(" "), ["--num", "--link", "--tribe", "--name", "--randNames", "--randSkins", "--chat", "--ai", "--probeTribe", "--probeName", "--autoHeal", "--hat", "--autoAttack"]);
+const args = parseFlags(process.argv.slice(2).join(" "), ["--num", "--link", "--tribe", "--name", "--randNames", "--randSkins", "--chat", "--ai", "--probeTribe", "--probeName", "--autoHeal", "--hat", "--autoAttack"]);
 
 const httpServer = http.createServer((req, res) => {
 	const args = url.parse(req.url, true).query;
@@ -49,16 +49,16 @@ httpServer.on("listening", () => {
 });
 httpServer.listen(15729);
 
-var ownerID = null;
-var followID = null;
+let ownerID = null;
+let followID = null;
 
-var attackFollowedPlayer = false;
-var stay = false;
+let attackFollowedPlayer = false;
+let stay = false;
 
-var goto = { x: null, y: null };
+const goto = { x: null, y: null };
 
 let mousePos = { x: 0, y: 0 };
-var followMouse = false;
+let followMouse = false;
 let getMouseInputInterval = null;
 if (computer) {
 	getMouseInputInterval = setInterval(() => {
@@ -84,20 +84,20 @@ function parseFlags(string, flags_array) {
 	if (!Array.isArray(flags_array)) {
 		return { error: "Array of flags not found." };
 	}
-	let return_object = {};
-	let flag_locations = [[-1, "null", []]];
-	let string_array = string.split(" ");
-	for (var i = 0; i < string_array.length; i++) {
-		if (flags_array.indexOf(string_array[i]) > -1) {
-			flag_locations.push([i, string_array[i], []]);
+	const return_object = {};
+	const flag_locations = [[-1, "null", []]];
+	const string_array = string.split(" ");
+	for (let index = 0; index < string_array.length; index++) {
+		if (flags_array.indexOf(string_array[index]) > -1) {
+			flag_locations.push([index, string_array[index], []]);
 		}else{
-			flag_locations[flag_locations.length - 1][2].push(string_array[i]);
+			flag_locations[flag_locations.length - 1][2].push(string_array[index]);
 		}
 	}
-	for (var i = 0; i < flag_locations.length; i++) {
-		return_object[flag_locations[i][1].replace(/^(-*)/g, "")] = {};
-		return_object[flag_locations[i][1].replace(/^(-*)/g, "")].flagLocation = flag_locations[i][0];
-		return_object[flag_locations[i][1].replace(/^(-*)/g, "")].value = flag_locations[i][2].join(" ");
+	for (let index = 0; index < flag_locations.length; index++) {
+		return_object[flag_locations[index][1].replace(/^(-*)/g, "")] = {};
+		return_object[flag_locations[index][1].replace(/^(-*)/g, "")].flagLocation = flag_locations[index][0];
+		return_object[flag_locations[index][1].replace(/^(-*)/g, "")].value = flag_locations[index][2].join(" ");
 	}
 	return return_object;
 }
@@ -112,17 +112,17 @@ function getIP(link) {
 }
 
 function processInput(line) {
-	let a = line.split(" ");
-	let command = a.shift();
+	const a = line.split(" ");
+	const command = a.shift();
 	if (command == "setowner") {
 		ownerID = a[0];
 	}
 }
 
 function getHatID(name) {
-	const maybeAnInt = parseInt(name);
-	if (!isNaN(maybeAnInt)) {
-		return maybeAnInt;
+	const possiblyInt = parseInt(name);
+	if (!isNaN(possiblyInt)) {
+		return possiblyInt;
 	}else{
 		if (!name || !name.toString) return null;
 		let safeName = name.toString().toLowerCase();
@@ -1066,7 +1066,7 @@ class Bot {
 		this.id = null;
 	}
 	async connect() {
-		let sk = this.socket = io.connect(`http://${this.ip}:${5000 + (this.number % 11)}`, {
+		const sk = this.socket = io.connect(`http://${this.ip}:${5000 + (this.number % 11)}`, {
 			reconnection: false,
 			query: "man=1",
 			transportOptions: {
@@ -1174,7 +1174,7 @@ class Bot {
 							lastUpdated: Date.now(),
 						};
 					}else{
-						let p = players[data[0 + i * 13]];
+						const p = players[data[0 + i * 13]];
 						p.x = data[1 + i * 13];
 						p.y = data[2 + i * 13],
 						p.angle = data[3 + i * 13],
@@ -1186,7 +1186,7 @@ class Bot {
 			// Player Remove (l_id)
 			sk.on("4", (longID) => {
 				if (this === bots[0]) {
-					for (let k in players) {
+					for (const k in players) {
 						if (this === bots[0]) {
 							if (players[k].longID == longID) delete players[k];
 						}
@@ -1246,8 +1246,8 @@ class Bot {
 					attackFollowedPlayer = false;
 					followMouse = false;
 				}else if (command === "id") {
-					let a = [];
-					for (let k in players) {
+					const a = [];
+					for (const k in players) {
 						if (players[k].name === args.join(" ")) a.push(k);
 					}
 					if (a.length > 0) {
@@ -1401,8 +1401,8 @@ class Bot {
 		}else if (followMouse) {
 			const p = players[ownerID];
 			if (p && p.x) {
-				let targetX = p.x + (mousePos.x - screen.width / 2);
-				let targetY = p.y + (mousePos.y - screen.height / 2);
+				const targetX = p.x + (mousePos.x - screen.width / 2);
+				const targetY = p.y + (mousePos.y - screen.height / 2);
 				if (Math.pow(this.pos.x - targetX, 2) + Math.pow(this.pos.y - targetY, 2) < 20000) {
 					this.socket.emit(2, p.angle);
 					this.socket.emit(3, null);
@@ -1420,18 +1420,18 @@ class Bot {
 					const randAngle = Math.random() * Math.PI * 2;
 					this.socket.emit(2, randAngle);
 					this.socket.emit(3, randAngle);
-				}else if (!attackFollowedPlayer){
-            if (Math.pow(this.pos.x - p.x, 2) + Math.pow(this.pos.y - p.y, 2) < 20000){
-              this.socket.emit(2, p.angle);
-              this.socket.emit(3, null);
-            }else{
-              this.socket.emit(2, Math.atan2(p.y - this.pos.y, p.x - this.pos.x));
-              this.socket.emit(3, Math.atan2(p.y - this.pos.y, p.x - this.pos.x));
-            }
-          }else{
-            this.socket.emit(2, Math.atan2(p.y - this.pos.y, p.x - this.pos.x));
-            this.socket.emit(3, Math.atan2(p.y - this.pos.y, p.x - this.pos.x));
-          }
+				}else if (!attackFollowedPlayer) {
+					if (Math.pow(this.pos.x - p.x, 2) + Math.pow(this.pos.y - p.y, 2) < 20000) {
+						this.socket.emit(2, p.angle);
+						this.socket.emit(3, null);
+					}else{
+						this.socket.emit(2, Math.atan2(p.y - this.pos.y, p.x - this.pos.x));
+						this.socket.emit(3, Math.atan2(p.y - this.pos.y, p.x - this.pos.x));
+					}
+				}else{
+					this.socket.emit(2, Math.atan2(p.y - this.pos.y, p.x - this.pos.x));
+					this.socket.emit(3, Math.atan2(p.y - this.pos.y, p.x - this.pos.x));
+				}
 			}
 		}else if (goto.x && goto.y) {
 			if (Math.pow(this.pos.x - goto.x, 2) + Math.pow(this.pos.y - goto.y, 2) < 40000) {
@@ -1448,19 +1448,19 @@ class Bot {
 	}
 }
 
-let numBots = (args.num && parseInt(args.num.value)) || 0;
-let link = (args.link && getIP(args.link.value)) || null;
-var name = (args.randNames && args.randNames.value.toLowerCase() != "false" && args.randNames.value != 0) ? true : ((args.name && args.name.value) || "unknown");
+const numBots = (args.num && parseInt(args.num.value)) || 0;
+const link = (args.link && getIP(args.link.value)) || null;
+let name = (args.randNames && args.randNames.value.toLowerCase() != "false" && args.randNames.value != 0) ? true : ((args.name && args.name.value) || "unknown");
 let tribe = (args.tribe && args.tribe.value) || null;
 let chat = (args.chat && args.chat.value) || null;
-let ai = args.ai && args.ai.value.toLowerCase() != "false" && args.ai.value.toLowerCase() != "0";
-var probeTribe = args.probeTribe && args.probeTribe.value;
-var probeName = args.probeName && args.probeName.value;
-let probe = probeTribe || probeName;
-let autoHeal = !args.autoHeal || (args.autoHeal.value.toLowerCase() != "false" && args.autoHeal.value.toLowerCase() != "0");
-let randSkins = args.randSkins && args.randSkins.value.toLowerCase() != "false" && args.randSkins.value.toLowerCase() != "0";
-let hatID = (args.hat && args.hat.value) || null;
-let autoAttack = !args.autoAttack || (args.autoAttack.value.toLowerCase() != "false" && args.autoAttack.value.toLowerCase() != "0");
+const ai = args.ai && args.ai.value.toLowerCase() != "false" && args.ai.value.toLowerCase() != "0";
+const probeTribe = args.probeTribe && args.probeTribe.value;
+const probeName = args.probeName && args.probeName.value;
+const probe = probeTribe || probeName;
+const autoHeal = !args.autoHeal || (args.autoHeal.value.toLowerCase() != "false" && args.autoHeal.value.toLowerCase() != "0");
+const randSkins = args.randSkins && args.randSkins.value.toLowerCase() != "false" && args.randSkins.value.toLowerCase() != "0";
+const hatID = (args.hat && args.hat.value) || null;
+const autoAttack = !args.autoAttack || (args.autoAttack.value.toLowerCase() != "false" && args.autoAttack.value.toLowerCase() != "0");
 typeof name === "string" && (name = name.slice(0, 16));
 tribe && (tribe = tribe.slice(0, 6));
 chat && (chat = chat.slice(0, 30));
@@ -1469,7 +1469,7 @@ if (probe) {
 	console.log(`Initiating probe for${probeTribe ? ` tribe ${probeTribe}` : ""}${probeName ? ` player ${probeName}` : ""}.`);
 	(function connectBots(i) {
 		if (i <= 0) return;
-		let promises = [];
+		const promises = [];
 		for (let j = i; (j > i - 8) && (j > 0); j--) {
 			promises.push(new Bot(j, allServers[j - 1].ip, "PROBE", tribe, chat, ai, probe, autoHeal, randSkins, hatID, autoAttack).connect());
 		}
@@ -1480,7 +1480,7 @@ if (probe) {
 }else{
 	(function connectBots(i) {
 		if (i <= 0) return;
-		let promises = [];
+		const promises = [];
 		for (let j = i; (j > i - 8) && (j > 0); j--) {
 			promises.push(new Bot(j, link, name === true ? names[(Math.random() * names.length) | 0] : name, tribe, chat, ai, probe, autoHeal, randSkins, hatID, autoAttack).connect());
 		}
