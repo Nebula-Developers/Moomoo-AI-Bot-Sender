@@ -1,3 +1,7 @@
+March 29, 2018 (1.8.0):
+  + Updated Moomoo Bot Utilities to work with the new encoding scheme
+  + UPDATE YOUR TAMPERMONKEY SCRIPT!!!
+
 February 23, 2018 (1.7.0):
   + Updated code to use ArrayBuffers
   + The first time you run this, "npm install" will be automatically run
