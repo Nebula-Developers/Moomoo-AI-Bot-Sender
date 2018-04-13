@@ -8,7 +8,7 @@ We are not responsible for any damages caused by this project, or derivatives of
 
 ## Resources
 
-* Discord Server: Find it in the reddit.
+* [Discord](https://discord.gg/VgKFcVf)
 * [Subreddit](https://reddit.com/r/Nebula_Devs)
 
 For contributors: [To-Do List](https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Sender/projects/1)
