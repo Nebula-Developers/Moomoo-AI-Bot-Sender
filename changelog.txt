@@ -1,3 +1,6 @@
+April 14, 2018 (1.8.1):
+  + Added dev servers
+
 March 29, 2018 (1.8.0):
   + Updated Moomoo Bot Utilities to work with the new encoding scheme
   + UPDATE YOUR TAMPERMONKEY SCRIPT!!!
