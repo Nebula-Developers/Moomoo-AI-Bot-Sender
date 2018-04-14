@@ -1041,6 +1041,57 @@ const allServers = [
 		"maxPlayers":40,
 		"experimental":false,
 	},
+	// Dev servers
+	{
+		"ip":"45.32.130.215",
+		"maxPlayers":40,
+		"experimental":true,
+	},
+	{
+		"ip":"45.63.90.79",
+		"maxPlayers":40,
+		"experimental":true,
+	},
+	{
+		"ip":"45.77.2.192",
+		"maxPlayers":40,
+		"experimental":true,
+	},
+	{
+		"ip":"45.77.0.43",
+		"maxPlayers":40,
+		"experimental":false, // Uncertain
+	},
+	{
+		"ip":"45.32.128.142",
+		"maxPlayers":40,
+		"experimental":false, // Uncertain
+	},
+	{
+		"ip":"45.63.93.27",
+		"maxPlayers":40,
+		"experimental":false, // Uncertain
+	},
+	{
+		"ip":"45.77.2.25",
+		"maxPlayers":40,
+		"experimental":false, // Uncertain
+	},
+	{
+		"ip":"45.63.82.111",
+		"maxPlayers":40,
+		"experimental":false, // Uncertain
+	},
+	{
+		"ip":"45.77.7.137",
+		"maxPlayers":40,
+		"experimental":false, // Uncertain
+	},
+	{
+		"ip":"45.63.88.19",
+		"maxPlayers":40,
+		"experimental":false, // Uncertain
+	},
 ];
 
 const bots = [];
