@@ -35,7 +35,7 @@ Run the following commands in your console (Command Prompt/Powershell):
 
     npm config set python python2.7
     npm config set msvs_version 2015
-  
+
 #### Mac OS X
 
 Download and install Python 2.7.x [here](https://www.python.org/downloads/release/python-2714/) if it isn't already installed.
@@ -122,6 +122,8 @@ Type "setowner \<your ID>" into the node.js console to make the bot obey your co
 
 `--probeName` does almost the same thing as --probeTribe, but searches the leaderboards for a player with the given name.
 
+`--probeRegex` makes the arguments provided to the 2 previous probe flags be interpreted as a regular expression. Do not use flags in your regular expression. Note that the starting and ending slashes (`/`) are not required. It is suggested that you surround your search expression in quotation marks so that the terminal doesn't interpret special characters like `>` as command line operators. Default: `false`
+
 You can probe (search) for a name on the leaderboard or a tribe on all the public Moomoo.io servers. This is useful if you want to use the other part of this script to put bots on someone's livestream.
 
 Here is the start script for probing using a tribe name:
@@ -135,6 +137,12 @@ Here is the start script for probing using a name on the leaderboard:
     node index.js --probeName Lucario
 
 Similar to the other command, this will return a list of server IPs which have the player `Lucario` on the leaderboard.
+
+Here is an example of regular expression probing:
+
+    node index.js --probeName "Luc" --probeRegex true
+
+This will return all servers where someone whose name has the string `Luc` is on the leaderboard. For example, it will match `Luc`, `Luca`, `Lucario`, and `abcLucdef`. (But not `luc`.)
 
 You can put both the outputs into `--link` for the botting start script.
 
