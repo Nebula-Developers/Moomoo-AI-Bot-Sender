@@ -1,3 +1,9 @@
+April 22, 2018 (1.9.0):
+  + JOIN NEBULA AT https://join-nebula.surge.sh (Discord)
+  + Added regex probing
+    * See the documentation for details
+  + Fixed some errors when sending large numbers of bots
+
 April 14, 2018 (1.8.1):
   + Added dev servers
 
