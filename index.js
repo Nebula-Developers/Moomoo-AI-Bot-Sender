@@ -1,3 +1,29 @@
+/*
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+*/
+
+/*
+Moomoo-AI-Bot-Sender
+Copyright (C) 2018 Mega Mewthree
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+// Created on April 22nd, 2018
+
 const io = require("socket.io-client");
 const request = require("request");
 const http = require("http");
@@ -1582,3 +1608,17 @@ process.stdin.on("data", data => {
 	});
 });
 process.stdin.resume();
+
+/*
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEGTGecftnrhRz9oomf4qgY6FcSQsFAlrdb6gACgkQf4qgY6Fc
+SQvzdAgAvHV0emtkSN0OKZt5eW3oBSVpOxum95lia3WVg/KgJOnKwBQuQhpQlZ/0
+w4u3YKXTnIisDJAi82YnQsxGXMHoKZ+fIj7jumT5zQjrm0yUV/V/vW6mpLIKrvBq
+1A9BFpwV2HHpzacF2gCXvLAzxD1O/PJCGLezHwuOXw/pQMKjCsEDy6LICC2PkxOt
+euyL6qDKQrrSQJM+9iewnX0lhJAvNFf3bSAT5ueHRaqtlsj0Ym5XXjsMr4FtMhCQ
+vxsdM+ttAkLGIgiUlw24BqMdK8Qkr1RoBSkq9nTS3MXZZzENZMFflcvTbb7y/85D
+u31F8EDUjNjx4tVR2zQmPaIMgMepig==
+=WVx4
+-----END PGP SIGNATURE-----
+*/
