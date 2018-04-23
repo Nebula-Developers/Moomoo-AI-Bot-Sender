@@ -38,7 +38,7 @@ try {
 
 const screen = computer && computer.getScreenSize();
 
-const args = parseFlags(process.argv.slice(2).join(" "), ["--num", "--link", "--tribe", "--name", "--randNames", "--randSkins", "--chat", "--ai", "--probeTribe", "--probeName", "--autoHeal", "--hat", "--autoAttack"]);
+const args = parseFlags(process.argv.slice(2).join(" "), ["--num", "--link", "--tribe", "--name", "--randNames", "--randSkins", "--chat", "--ai", "--probeTribe", "--probeName", "--probeRegex", "--autoHeal", "--hat", "--autoAttack"]);
 
 const httpServer = http.createServer((req, res) => {
 	const args = url.parse(req.url, true).query;
@@ -1164,17 +1164,21 @@ class Bot {
 			});
 			// Leaderboard
 			sk.on("5", data => {
-				if (probeName && data.indexOf(probeName) > -1) {
-					console.log(`${this.ip}`);
-					sk.disconnect();
+				if (probeName){
+					if ((probeName instanceof RegExp && data.filter(d => typeof d === "string" && d.match(probeName)).length > 0) || (typeof probeName === "string" && data.indexOf(probeName) > -1)){
+						console.log(`${this.ip}`);
+						sk.disconnect();
+					}
 				}
 			});
 			// ID (tribes[name, owner])
 			sk.on("id", (data) => {
 				data.teams.forEach(t => {
-					if (probeTribe && t.sid == probeTribe) {
-						console.log(`${this.ip}`);
-						sk.disconnect();
+					if (probeTribe){
+						if ((probeTribe instanceof RegExp && t.sid.match(probeTribe)) || (typeof probeTribe === "string" && t.sid === probeTribe)){
+							console.log(`${this.ip}`);
+							sk.disconnect();
+						}
 					}
 				});
 			});
@@ -1417,7 +1421,7 @@ class Bot {
 		}
 	}
 	disconnect() {
-		this.socket.disconnect();
+		this.socket && this.socket.disconnect();
 	}
 	spawn() {
 		this.socket && this.socket.emit("1", {
@@ -1432,11 +1436,13 @@ class Bot {
 		this.socket && this.tribe && this.socket.emit("10", this.tribe);
 	}
 	heal() {
+		if (!this.socket) return;
 		this.socket.emit("5", 0, null);
 		this.socket.emit("4", 1, null);
 		this.socket.emit("5", 0, true);
 	}
 	tryHatOn(id) {
+		if (!this.socket) return;
 		id = getHatID(id);
 		if (isNaN(id)) return null;
 		if (!isNaN(data.hatPrices[id])) {
@@ -1452,6 +1458,7 @@ class Bot {
 		}
 	}
 	chat() {
+		if (!this.socket) return;
 		this.socket.emit("ch", this.chatMsg);
 		this.chatMsg = this.origChatMsg;
 		if (this.origChatMsg && !this.chatInterval) {
@@ -1459,6 +1466,7 @@ class Bot {
 		}
 	}
 	update() {
+		if (!this.socket) return;
 		if (!this.ai) return;
 		if (stay) {
 			this.socket.emit(3, null);
@@ -1512,14 +1520,23 @@ class Bot {
 	}
 }
 
+function escapeRegExp(s) {
+	if (s.startsWith("/") && s.endsWith("/")){
+		s = s.split("");
+		s = s.slice(1, s.length - 1).join("");
+	}
+  return s.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
+}
+
 const numBots = (args.num && parseInt(args.num.value)) || 0;
 const link = (args.link && getIP(args.link.value)) || null;
 let name = (args.randNames && args.randNames.value.toLowerCase() != "false" && args.randNames.value != 0) ? true : ((args.name && args.name.value) || "unknown");
 let tribe = (args.tribe && args.tribe.value) || null;
 let chat = (args.chat && args.chat.value) || null;
 const ai = args.ai && args.ai.value.toLowerCase() != "false" && args.ai.value.toLowerCase() != "0";
-const probeTribe = args.probeTribe && args.probeTribe.value;
-const probeName = args.probeName && args.probeName.value;
+const probeRegex = args.probeRegex && args.probeRegex.value.toLowerCase() != "false" && args.probeRegex.value.toLowerCase() != "0";
+const probeTribe = args.probeTribe && (probeRegex ? new RegExp(escapeRegExp(args.probeTribe.value)) : args.probeTribe.value);
+const probeName = args.probeName && (probeRegex ? new RegExp(escapeRegExp(args.probeName.value)) : args.probeName.value);
 const probe = probeTribe || probeName;
 const autoHeal = !args.autoHeal || (args.autoHeal.value.toLowerCase() != "false" && args.autoHeal.value.toLowerCase() != "0");
 const randSkins = args.randSkins && args.randSkins.value.toLowerCase() != "false" && args.randSkins.value.toLowerCase() != "0";
@@ -1530,7 +1547,11 @@ tribe && (tribe = tribe.slice(0, 6));
 chat && (chat = chat.slice(0, 30));
 
 if (probe) {
-	console.log(`Initiating probe for${probeTribe ? ` tribe ${probeTribe}` : ""}${probeName ? ` player ${probeName}` : ""}.`);
+	if (probeRegex){
+		console.log(`Initiating probe for${(args.probeTribe && args.probeTribe.value) ? ` tribe ${args.probeTribe.value}` : ""}${(args.probeName && args.probeName.value) ? ` player ${args.probeName.value}` : ""} using regex.`);
+	}else{
+		console.log(`Initiating probe for${probeTribe ? ` tribe ${probeTribe}` : ""}${probeName ? ` player ${probeName}` : ""}.`);
+	}
 	(function connectBots(i) {
 		if (i <= 0) return;
 		const promises = [];
