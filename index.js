@@ -40,7 +40,7 @@ try {
 	spawn("npm", ["install"], {
 		stdio: "ignore",
 		shell: true,
-		detached: true
+		detached: true,
 	});
 	process.exit();
 }
@@ -49,7 +49,7 @@ if (!fs.existsSync(`${__dirname}/lastUpdated.txt`) || Date.now() - parseInt(fs.r
 	spawn("node", [`${__dirname}/autoupdate.js`], {
 		stdio: "ignore",
 		shell: true,
-		detached: true
+		detached: true,
 	});
 }
 
@@ -1190,8 +1190,8 @@ class Bot {
 			});
 			// Leaderboard
 			sk.on("5", data => {
-				if (probeName){
-					if ((probeName instanceof RegExp && data.filter(d => typeof d === "string" && d.match(probeName)).length > 0) || (typeof probeName === "string" && data.indexOf(probeName) > -1)){
+				if (probeName) {
+					if ((probeName instanceof RegExp && data.filter(d => typeof d === "string" && d.match(probeName)).length > 0) || (typeof probeName === "string" && data.indexOf(probeName) > -1)) {
 						console.log(`${this.ip}`);
 						sk.disconnect();
 					}
@@ -1200,8 +1200,8 @@ class Bot {
 			// ID (tribes[name, owner])
 			sk.on("id", (data) => {
 				data.teams.forEach(t => {
-					if (probeTribe){
-						if ((probeTribe instanceof RegExp && t.sid.match(probeTribe)) || (typeof probeTribe === "string" && t.sid === probeTribe)){
+					if (probeTribe) {
+						if ((probeTribe instanceof RegExp && t.sid.match(probeTribe)) || (typeof probeTribe === "string" && t.sid === probeTribe)) {
 							console.log(`${this.ip}`);
 							sk.disconnect();
 						}
@@ -1339,50 +1339,58 @@ class Bot {
 					followID = ownerID;
 					attackFollowedPlayer = false;
 					followMouse = false;
-				}else if (command === "id") {
+				} else if (command === "id") {
 					const a = [];
 					for (const k in players) {
 						if (players[k].name === args.join(" ")) a.push(k);
 					}
 					if (a.length > 0) {
 						this.chatMsg = a.join(", ").slice(0, 30);
-					}else{
+					} else {
 						this.chatMsg = "Player not in memory.";
 					}
 					clearInterval(this.chatInterval);
 					this.chatInterval = null;
 					setTimeout(this.chat.bind(this), 1000);
-				}else if (command === "fid") {
+				} else if (command === "fid") {
 					goto.x = goto.y = null;
 					stay = false;
 					followID = parseInt(args[0]);
 					attackFollowedPlayer = false;
 					followMouse = false;
-				}else if (command === "atkid") {
+				} else if (command === "atkid") {
 					goto.x = goto.y = null;
 					stay = false;
 					followID = parseInt(args[0]);
 					attackFollowedPlayer = true;
 					followMouse = false;
-				}else if (command === "s") {
+				} else if (command === "goto") {
+					const newX = parseInt(args[0]);
+					const newY = parseInt(args[1]);
+
+					bots.forEach(bot => {
+						goto.x = newX;
+						goto.y = newY;
+					});
+				} else if (command === "s") {
 					goto.x = goto.y = null;
 					stay = true;
 					followID = null;
 					attackFollowedPlayer = false;
 					followMouse = false;
-				}else if (command === "r") {
+				} else if (command === "r") {
 					goto.x = goto.y = null;
 					stay = false;
 					followID = null;
 					attackFollowedPlayer = false;
 					followMouse = false;
-				}else if (command === "fm" && computer) {
+				} else if (command === "fm" && computer) {
 					goto.x = goto.y = null;
 					stay = false;
 					followID = null;
 					attackFollowedPlayer = false;
 					followMouse = true;
-				}else if (command === "hat" && args[0]) {
+				} else if (command === "hat" && args[0]) {
 					const hatToEquip = args[0];
 					let len = bots.length;
 					let bot, triedHat;
@@ -1391,24 +1399,26 @@ class Bot {
 						triedHat = bot.tryHatOn(hatToEquip);
 						if (triedHat) {
 							bot.chatMsg = "Switched hat.";
-						}else if (triedHat === false) {
+						} else if (triedHat === false) {
 							bot.chatMsg = `Need ${data.hatPrices[getHatID(hatToEquip)] - bot.materials.points} more gold.`;
-						}else{
+						} else {
 							bot.chatMsg = "Invalid hat!";
 						}
 						clearInterval(bot.chatInterval);
 						bot.chatInterval = null;
 						setTimeout(bot.chat.bind(bot), 1000);
 					}
-				}else if (command === "atk") {
-					this.autoAttack = !this.autoAttack;
-					this.socket && this.socket.emit("7", this.autoAttack);
-				}else if (command === "sp") {
+				} else if (command === "atk") {
+					bots.forEach(bot => {
+						this.autoAttack = !this.autoAttack;
+						this.socket && this.socket.emit("7", this.autoAttack);
+					});
+				} else if (command === "sp") {
 					this.socket.emit("5", 5, null);
 					this.socket.emit("4", 1, null);
 					this.socket.emit("4", 0, null);
 					this.socket.emit("5", 1, null);
-				}else if (command === "w") {
+				} else if (command === "w") {
 					this.socket.emit("5", 2, null);
 					this.socket.emit("4", 1, null);
 					this.socket.emit("4", 0, null);
@@ -1547,11 +1557,11 @@ class Bot {
 }
 
 function escapeRegExp(s) {
-	if (s.startsWith("/") && s.endsWith("/")){
+	if (s.startsWith("/") && s.endsWith("/")) {
 		s = s.split("");
 		s = s.slice(1, s.length - 1).join("");
 	}
-  return s.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
+	return s.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
 }
 
 const numBots = (args.num && parseInt(args.num.value)) || 0;
@@ -1573,7 +1583,7 @@ tribe && (tribe = tribe.slice(0, 6));
 chat && (chat = chat.slice(0, 30));
 
 if (probe) {
-	if (probeRegex){
+	if (probeRegex) {
 		console.log(`Initiating probe for${(args.probeTribe && args.probeTribe.value) ? ` tribe ${args.probeTribe.value}` : ""}${(args.probeName && args.probeName.value) ? ` player ${args.probeName.value}` : ""} using regex.`);
 	}else{
 		console.log(`Initiating probe for${probeTribe ? ` tribe ${probeTribe}` : ""}${probeName ? ` player ${probeName}` : ""}.`);
