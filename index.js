@@ -160,16 +160,16 @@ function processInput(line) {
 
 function getHatID(name) {
 	const possiblyInt = parseInt(name);
-	if (!isNaN(possiblyInt)) {
-		return possiblyInt;
-	}else{
+	if (isNaN(possiblyInt)) {
 		if (!name || !name.toString) return null;
 		let safeName = name.toString().toLowerCase();
 		safeName = safeName.replace(/[$-/:-?{-~!"^_`\[\]]/g, ""); // remove symbols
 		safeName = safeName.replace(/\s/g, ""); // remove whitespace
 		safeName = data.hatAliases[safeName];
-		if (!isNaN(safeName)) return safeName;
-		return null;
+		
+		return isNaN(safeName) ? null : safeName;
+	}else{
+		return possiblyInt;
 	}
 }
 
@@ -1260,19 +1260,19 @@ class Bot {
 						this.pos.y = data[2 + i * 13];
 						this.angle = data[3 + i * 13];
 					}
-					if (!players[data[0 + i * 13]]) {
+					if (players[data[0 + i * 13]]) {
+						const p = players[data[0 + i * 13]];
+						p.x = data[1 + i * 13];
+						p.y = data[2 + i * 13],
+						p.angle = data[3 + i * 13],
+						p.lastUpdated = Date.now();
+					}else{
 						players[data[0 + i * 13]] = {
 							x: data[1 + i * 13],
 							y: data[2 + i * 13],
 							angle: data[3 + i * 13],
 							lastUpdated: Date.now(),
 						};
-					}else{
-						const p = players[data[0 + i * 13]];
-						p.x = data[1 + i * 13];
-						p.y = data[2 + i * 13],
-						p.angle = data[3 + i * 13],
-						p.lastUpdated = Date.now();
 					}
 				}
 				this.update();
@@ -1333,86 +1333,100 @@ class Bot {
 				if (!msg.startsWith("!")) return;
 				const args = msg.slice(1).trim().split(/ +/g);
 				const command = args.shift().toLowerCase();
-				if (command === "fme") {
-					goto.x = goto.y = null;
-					stay = false;
-					followID = ownerID;
-					attackFollowedPlayer = false;
-					followMouse = false;
-				}else if (command === "id") {
-					const a = [];
-					for (const k in players) {
-						if (players[k].name === args.join(" ")) a.push(k);
-					}
-					if (a.length > 0) {
-						this.chatMsg = a.join(", ").slice(0, 30);
-					}else{
-						this.chatMsg = "Player not in memory.";
-					}
-					clearInterval(this.chatInterval);
-					this.chatInterval = null;
-					setTimeout(this.chat.bind(this), 1000);
-				}else if (command === "fid") {
-					goto.x = goto.y = null;
-					stay = false;
-					followID = parseInt(args[0]);
-					attackFollowedPlayer = false;
-					followMouse = false;
-				}else if (command === "atkid") {
-					goto.x = goto.y = null;
-					stay = false;
-					followID = parseInt(args[0]);
-					attackFollowedPlayer = true;
-					followMouse = false;
-				}else if (command === "s") {
-					goto.x = goto.y = null;
-					stay = true;
-					followID = null;
-					attackFollowedPlayer = false;
-					followMouse = false;
-				}else if (command === "r") {
-					goto.x = goto.y = null;
-					stay = false;
-					followID = null;
-					attackFollowedPlayer = false;
-					followMouse = false;
-				}else if (command === "fm" && computer) {
-					goto.x = goto.y = null;
-					stay = false;
-					followID = null;
-					attackFollowedPlayer = false;
-					followMouse = true;
-				}else if (command === "hat" && args[0]) {
-					const hatToEquip = args[0];
-					let len = bots.length;
-					let bot, triedHat;
-					while (len--) {
-						bot = bots[len];
-						triedHat = bot.tryHatOn(hatToEquip);
-						if (triedHat) {
-							bot.chatMsg = "Switched hat.";
-						}else if (triedHat === false) {
-							bot.chatMsg = `Need ${data.hatPrices[getHatID(hatToEquip)] - bot.materials.points} more gold.`;
-						}else{
-							bot.chatMsg = "Invalid hat!";
+				switch (command) {
+					case "fme":
+						goto.x = goto.y = null;
+						stay = false;
+						followID = ownerID;
+						attackFollowedPlayer = false;
+						followMouse = false;
+						break;
+					case "id":
+						const a = [];
+						for (const k in players) {
+							if (players[k].name === args.join(" ")) a.push(k);
 						}
-						clearInterval(bot.chatInterval);
-						bot.chatInterval = null;
-						setTimeout(bot.chat.bind(bot), 1000);
-					}
-				}else if (command === "atk") {
-					this.autoAttack = !this.autoAttack;
-					this.socket && this.socket.emit("7", this.autoAttack);
-				}else if (command === "sp") {
-					this.socket.emit("5", 5, null);
-					this.socket.emit("4", 1, null);
-					this.socket.emit("4", 0, null);
-					this.socket.emit("5", 1, null);
-				}else if (command === "w") {
-					this.socket.emit("5", 2, null);
-					this.socket.emit("4", 1, null);
-					this.socket.emit("4", 0, null);
-					this.socket.emit("5", 1, null);
+						this.chatMsg = a.length > 0 ? a.join(", ").slice(0, 30) : "Player not in memory.";
+						clearInterval(this.chatInterval);
+						this.chatInterval = null;
+						setTimeout(this.chat.bind(this), 1000);
+						break;
+					case "fid":
+						goto.x = goto.y = null;
+						stay = false;
+						followID = parseInt(args[0]);
+						attackFollowedPlayer = false;
+						followMouse = false;
+						break;
+					case "atkid":
+						goto.x = goto.y = null;
+						stay = false;
+						followID = parseInt(args[0]);
+						attackFollowedPlayer = true;
+						followMouse = false;
+						break;
+					case "s":
+						goto.x = goto.y = null;
+						stay = true;
+						followID = null;
+						attackFollowedPlayer = false;
+						followMouse = false;
+						break;
+					case "r":
+						goto.x = goto.y = null;
+						stay = false;
+						followID = null;
+						attackFollowedPlayer = false;
+						followMouse = false;
+						break;
+					case "fm":
+						if (computer) {
+							goto.x = goto.y = null;
+							stay = false;
+							followID = null;
+							attackFollowedPlayer = false;
+							followMouse = true;
+						} else {
+							this.chatMsg = "Cannot use follow mouse.";
+						}
+						break;
+					case "hat":
+						if (args[0]) {
+							const hatToEquip = args[0];
+							let len = bots.length;
+							let bot, triedHat;
+							while (len--) {
+								bot = bots[len];
+								triedHat = bot.tryHatOn(hatToEquip);
+								if (triedHat) {
+									bot.chatMsg = "Switched hat.";
+								}else if (triedHat === false) {
+									bot.chatMsg = `Need ${data.hatPrices[getHatID(hatToEquip)] - bot.materials.points} more gold.`;
+								}else{
+									bot.chatMsg = "Invalid hat!";
+								}
+								clearInterval(bot.chatInterval);
+								bot.chatInterval = null;
+								setTimeout(bot.chat.bind(bot), 1000);
+							}
+						}
+						break;
+					case "atk":
+						this.autoAttack = !this.autoAttack;
+						this.socket && this.socket.emit("7", this.autoAttack);
+						break;
+					case "sp":
+						this.socket.emit("5", 5, null);
+						this.socket.emit("4", 1, null);
+						this.socket.emit("4", 0, null);
+						this.socket.emit("5", 1, null);
+						break;
+					case "w":
+						this.socket.emit("5", 2, null);
+						this.socket.emit("4", 1, null);
+						this.socket.emit("4", 0, null);
+						this.socket.emit("5", 1, null);
+						break;
 				}
 			});
 			// ID (tribes[name, owner])
@@ -1492,8 +1506,7 @@ class Bot {
 		}
 	}
 	update() {
-		if (!this.socket) return;
-		if (!this.ai) return;
+		if (!this.socket || !this.ai) return;
 		if (stay) {
 			this.socket.emit(3, null);
 		}else if (followMouse) {
@@ -1578,27 +1591,24 @@ if (probe) {
 	}else{
 		console.log(`Initiating probe for${probeTribe ? ` tribe ${probeTribe}` : ""}${probeName ? ` player ${probeName}` : ""}.`);
 	}
-	(function connectBots(i) {
-		if (i <= 0) return;
-		const promises = [];
-		for (let j = i; (j > i - 8) && (j > 0); j--) {
-			promises.push(new Bot(j, allServers[j - 1].ip, "PROBE", tribe, chat, ai, probe, autoHeal, randSkins, hatID, autoAttack).connect());
-		}
-		Promise.all(promises).then(() => {
-			connectBots(i - 8);
-		}).catch(console.error);
-	})(allServers.length);
+	connectBots(allServers.length, true);
 }else{
-	(function connectBots(i) {
-		if (i <= 0) return;
-		const promises = [];
-		for (let j = i; (j > i - 8) && (j > 0); j--) {
+	connectBots(numBots);
+}
+
+function connectBots(i, probe = false) {
+	if (i <= 0) return;
+	const promises = [];
+	for (let j = i; (j > i - 8) && (j > 0); j--) {
+		if (probe) {
+			promises.push(new Bot(j, allServers[j - 1].ip, "PROBE", tribe, chat, ai, probe, autoHeal, randSkins, hatID, autoAttack).connect());
+		} else {
 			promises.push(new Bot(j, link, name === true ? names[(Math.random() * names.length) | 0] : name, tribe, chat, ai, probe, autoHeal, randSkins, hatID, autoAttack).connect());
 		}
-		Promise.all(promises).then(() => {
-			connectBots(i - 8);
-		}).catch(console.error);
-	})(numBots);
+	}
+	Promise.all(promises).then(() => {
+		connectBots(i - 8);
+	}).catch(console.error);
 }
 
 process.stdin.setEncoding("utf8");
