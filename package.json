@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Mega-Mewthree",
+  "author": "Mega-Mewthree (Nebula-Developers)",
   "license": "GPL-3.0",
   "dependencies": {
     "auto-updater": "^1.0.2",
@@ -19,14 +19,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Sender.git"
+    "url": "https://github.com/Nebula-Developers/Moomoo-AI-Bot-Sender.git"
   },
-  "bugs": "https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Sender/issues",
+  "bugs": "https://github.com/Nebula-Developers/Moomoo-AI-Bot-Sender/issues",
   "engines": {
     "node": ">=7.6.0"
   },
   "auto-updater": {
-    "repo": "Mega-Mewthree/Moomoo-AI-Bot-Sender",
+    "repo": "Nebula-Developers/Moomoo-AI-Bot-Sender",
     "branch": "master"
   },
   "devDependencies": {

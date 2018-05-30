@@ -2,7 +2,7 @@
 
 This script is a very configurable botting tool for the MMO game [Moomoo.io](http://moomoo.io).
 
-### WARNING: Please do not download any code that claims that it will "fix" or "add features" to this bot code. People have been including trojans and viruses in those unofficial programs. The ONLY official Moomoo bot code authors are Mega-Mewthree and Nebula-Devs. DO NOT download any other code related to Moomoo bots.
+### WARNING: Please do not download any code that claims that it will "fix" or "add features" to this bot code. People have been including trojans and viruses in those unofficial programs. The ONLY official Moomoo bot code authors are `Mega-Mewthree` and `Nebula-Developers`. DO NOT download any other code related to Moomoo bots.
 
 We are not responsible for any damages caused by this project, or derivatives of this project. Use at your own risk.
 
@@ -11,7 +11,7 @@ We are not responsible for any damages caused by this project, or derivatives of
 * [Discord](https://discord.gg/VgKFcVf)
 * [Subreddit](https://reddit.com/r/Nebula_Devs)
 
-For contributors: [To-Do List](https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Sender/projects/1)
+For contributors: [To-Do List](https://github.com/Nebula-Developers/Moomoo-AI-Bot-Sender/projects/1)
 
 ## Installation
 
