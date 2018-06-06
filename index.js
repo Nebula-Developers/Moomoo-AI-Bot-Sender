@@ -173,7 +173,7 @@ function getHatID(name) {
 	}
 }
 
-const data = require("./data.json");
+const data = require("./dev/data.json");
 
 const names = [
 	"Wally",

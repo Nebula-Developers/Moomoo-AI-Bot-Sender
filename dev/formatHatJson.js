@@ -1,11 +1,3 @@
-/*
-
-####      If you're here and you're      ####
-####    not a developer of these bots,   ####
-####      you're in the wrong place.     ####
-
-*/
-
 let hatPrices = [];
 let hatInfo = undefined; // paste the hat array object here
 
