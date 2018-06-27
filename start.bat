@@ -7,7 +7,7 @@ cls
 @echo off
 :start
 echo Menu:
-echo     1. Bot Sender
+echo     1. Bot Sender (NOT FUNCTIONAL)
 echo     2. Prober
 set /p menu="Select an option: "
 if %menu%==2 goto probe
