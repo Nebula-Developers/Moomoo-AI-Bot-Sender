@@ -1,3 +1,14 @@
+June 27, 2018 (2.0.0):
+  + Sidney added an IP limit to Moomoo.io
+    * RIP bots 2017-2018
+    * This script can now only probe servers.
+  + Updated the server list to fetch from server.
+  + Probing still works, so raid livestreams (manually) all you want.
+  + Feel free to disable the Tampermonkey script now.
+  + It's been a nice run everyone!
+  + Thank you for using this script!
+  + Join our Discord at https://nebula.mooo.info
+
 April 22, 2018 (1.9.0):
   + JOIN NEBULA AT https://join-nebula.surge.sh (Discord)
   + Added regex probing
