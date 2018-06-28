@@ -1,10 +1,4 @@
 /*
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA256
-
-*/
-
-/*
 Moomoo-AI-Bot-Sender
 Copyright (C) 2018 Mega Mewthree
 
@@ -21,8 +15,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-// Updated on June 27th, 2018
 
 (async () => {
 	const io = require("socket.io-client");
@@ -736,17 +728,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	});
 	process.stdin.resume();
 })();
-
-/*
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEGTGecftnrhRz9oomf4qgY6FcSQsFAlszwokACgkQf4qgY6Fc
-SQsDTggA502bffFL+F0jBl9XW16Ql1BIKXVro8RuXA9DVXvHcFH0vZBFOA0Cz5bx
-druRqTT2QpbZPoTgoAznPrMcSBa8SbmBxxpMkAlIf4e5Uyrp+YZF8KoSg6FKnsyU
-tlwDTjV8+JnycxPmkH1IuSM0cNgd0lM6s3Cl4p9DuCSnCxjuTIcaDlZNilzftiEs
-p8N7647ogCwxSnankpcCUVXrphqbgJNIoGFExUdPpNbwKXF+PUuFFFI76118yHyf
-elY6g7wX2ks+75r6L0ULKQ1a75AGVAc7+fpb/zkxELrsiv/OFTm7Dhkyv244q/td
-O20ZVdsTqTS1ZtPo5Ltj6j+iYr8lTQ==
-=iYEa
------END PGP SIGNATURE-----
-*/
