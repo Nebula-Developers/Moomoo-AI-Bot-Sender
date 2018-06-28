@@ -1,3 +1,9 @@
+June 28, 2018 (2.1.0):
+  + Bots are back
+    * There will still be a warning when using 20 or more bots though
+    * No known way to bypass IP limit other than proxies (might come eventually)
+  + You can re-enable your script, it has some useful features
+
 June 27, 2018 (2.0.0):
   + Sidney added an IP limit to Moomoo.io
     * RIP bots 2017-2018

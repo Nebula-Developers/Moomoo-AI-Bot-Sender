@@ -7,7 +7,7 @@ cls
 @echo off
 :start
 echo Menu:
-echo     1. Bot Sender (NOT FUNCTIONAL)
+echo     1. Bot Sender
 echo     2. Prober
 set /p menu="Select an option: "
 if %menu%==2 goto probe
@@ -42,7 +42,7 @@ cls
 set /p partylink="Party Link: "
 set /p tribename="Tribe Name: "
 set /p botnick="Bot Name: "
-set /p numbots="Number of Bots: "
+set /p numbots="Number of Bots (may be limited by server): "
 set /p chatmsg="Bot Chat Message: "
 set /p ai="AI? (Y/N): "
 set /p autoheal="Autoheal? (Y/N): "
