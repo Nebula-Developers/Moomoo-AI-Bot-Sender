@@ -1,12 +1,12 @@
 {
   "name": "moomoo-bots-with-ai",
-  "version": "2.0.0",
+  "version": "1.9.0",
   "description": "A Moomoo AI Bot Script",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Mega-Mewthree",
+  "author": "Mega-Mewthree (Nebula-Developers)",
   "license": "GPL-3.0",
   "dependencies": {
     "auto-updater": "^1.0.2",
@@ -14,17 +14,19 @@
     "socket.io": "^2.0.4",
     "socket.io-msgpack-parser": "^2.2.0"
   },
-  "optionalDependencies": {},
+  "optionalDependencies": {
+    "robotjs": "^0.4.7"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Sender.git"
+    "url": "https://github.com/Nebula-Developers/Moomoo-AI-Bot-Sender.git"
   },
-  "bugs": "https://github.com/Mega-Mewthree/Moomoo-AI-Bot-Sender/issues",
+  "bugs": "https://github.com/Nebula-Developers/Moomoo-AI-Bot-Sender/issues",
   "engines": {
     "node": ">=7.6.0"
   },
   "auto-updater": {
-    "repo": "Mega-Mewthree/Moomoo-AI-Bot-Sender",
+    "repo": "Nebula-Developers/Moomoo-AI-Bot-Sender",
     "branch": "master"
   },
   "devDependencies": {
