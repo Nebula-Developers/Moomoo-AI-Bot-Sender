@@ -701,8 +701,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			}).catch(console.error);
 		})(allServers.length);
 	} else {
-		console.error("Due to the new IP limit, bot sending no longer works.\nHowever, you can still use the probe function.");
-		process.exit();
+		if (numBots > 20) {
+			process.stdout.write("Warning: 20 or more bots may be capped by a server-side IP limit.\n");
+		}
+
 		const server = getServerByID(link);
 		if (!server) {
 			console.error("Invalid link!");
